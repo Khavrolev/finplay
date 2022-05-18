@@ -1,5 +1,7 @@
 module.exports = {
-  secret: "THATS_VERY_SECRET_KEY_FOR_TOKEN",
-  port: 4000,
-  pathToData: "./data.json",
+  SECRET: "THATS_VERY_SECRET_KEY_FOR_TOKEN",
+  PORT: 4000,
+  PATH_DATA: "./data.json",
+  CLIENT_URL: "http://localhost:3000",
+  COOKIE_NAME: "finplay-token",
 };

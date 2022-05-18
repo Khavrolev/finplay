@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
-const { secret } = require("../config");
+const { SECRET } = require("../config");
 
-module.exports = (role) => (req, res, next) => {
+module.exports = (req, res, next) => {
   if (req.method === "OPTIONS") {
     next();
   }
@@ -12,8 +12,8 @@ module.exports = (role) => (req, res, next) => {
       return res.status(403).json({ message: "User is't authorized" });
     }
 
-    const { role: userRole } = jwt.verify(token.split(" ")[1], secret);
-    if (role !== userRole) {
+    const { adminRole } = jwt.verify(token.split(" ")[1], SECRET);
+    if (!adminRole) {
       return res.status(403).json({ message: "It's forbidden" });
     }
     next();
