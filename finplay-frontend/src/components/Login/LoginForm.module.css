@@ -1,4 +1,6 @@
 .loginform {
+  margin: auto;
+  max-width: 412px;
   display: flex;
   flex-direction: column;
 }
@@ -34,6 +36,10 @@
 
 .loginform__input:placeholder-shown {
   padding: 22px 16px;
+}
+
+.loginform__input_error {
+  border: 1px solid #ff0000;
 }
 
 .loginform__input:not(:placeholder-shown) {

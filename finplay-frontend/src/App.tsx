@@ -9,14 +9,20 @@ const App = () => {
   const { store } = useContext(Context);
 
   useEffect(() => {
-    if (localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)) {
-      store.checkAuth();
-    }
+    const fetchData = async () => {
+      if (localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)) {
+        await store.checkAuth();
+      }
+
+      store.setInitialized(true);
+    };
+
+    fetchData();
   }, [store]);
 
   return (
     <div className={classes.wrapper}>
-      {!store.user && (
+      {!store.user && store.initialized && (
         <div className={classes.wrapper__loginform}>
           <LoginForm />
         </div>

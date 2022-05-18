@@ -1,16 +1,18 @@
 import { observer } from "mobx-react-lite";
 import { FormEvent, useState, useContext } from "react";
+import classNames from "classnames";
 import classes from "./LoginForm.module.css";
 import Context from "../../context";
 
 const LoginForm = () => {
   const { store } = useContext(Context);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (store.isLoading) {
+    if (store.loading) {
       return;
     }
 
@@ -18,6 +20,10 @@ const LoginForm = () => {
     const password = event.currentTarget.password.value;
 
     store.login(login, password);
+
+    if (!store.user) {
+      setError(true);
+    }
   };
 
   return (
@@ -26,7 +32,9 @@ const LoginForm = () => {
       <form className={classes.loginform__form} onSubmit={handleSubmit}>
         <div className={classes.loginform__wrapinput}>
           <input
-            className={classes.loginform__input}
+            className={classNames(classes.loginform__input, {
+              [classes.loginform__input_error]: error,
+            })}
             type="text"
             placeholder="Login"
             name="login"
@@ -36,7 +44,9 @@ const LoginForm = () => {
         </div>
         <div className={classes.loginform__wrapinput}>
           <input
-            className={classes.loginform__input}
+            className={classNames(classes.loginform__input, {
+              [classes.loginform__input_error]: error,
+            })}
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             name="password"
@@ -50,7 +60,7 @@ const LoginForm = () => {
         </div>
         <button className={classes.loginform__submit} type="submit">
           <div className={classes.loginform__buttontext}>
-            {store.isLoading ? (
+            {store.loading ? (
               <img
                 className={classes.loginform__loader}
                 src="./img/loader.png"

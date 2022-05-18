@@ -5,9 +5,11 @@ import { API_URL, LOCAL_STORAGE_TOKEN_NAME } from "../utils/constants";
 import { AuthResponse, IUser } from "../utils/interfaces";
 
 export default class Store {
-  user = null as IUser | null;
+  user: IUser | null = null;
 
-  isLoading = false;
+  loading = false;
+
+  initialized = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -18,7 +20,11 @@ export default class Store {
   }
 
   setLoading(bool: boolean) {
-    this.isLoading = bool;
+    this.loading = bool;
+  }
+
+  setInitialized(bool: boolean) {
+    this.initialized = bool;
   }
 
   async login(userName: string, password: string) {
