@@ -32,7 +32,7 @@ const startApp = () => {
 
 startApp();
 
-app.get("/", authMiddleware, (req, res) => {
+app.get("/data", authMiddleware, (req, res) => {
   try {
     res.status(200).json(data);
   } catch (error) {

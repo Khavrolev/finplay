@@ -42,7 +42,7 @@ body {
   line-height: 120%;
   font-size: 16px;
   font-weight: 400;
-  color: #000000;
+  color: #2b2b2b;
   font-family: "Helvetica Now Text", -apple-system, system-ui, "Segoe UI",
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   background: #fdfdfd;
@@ -66,13 +66,24 @@ textarea {
 }
 
 .wrapper {
-  padding: 24px;
+  display: flex;
+}
+
+.wrapper__loginform {
+  padding: 0px 24px;
+  flex: 1;
   display: flex;
   height: 100vh;
   justify-content: center;
   align-items: center;
 }
 
-.wrapper__loginform {
-  flex: 1;
+.wrapper__mainpage {
+  padding: 12px 24px;
+}
+
+@media (min-width: 428px) {
+  .wrapper__mainpage {
+    padding: 0px 82px;
+  }
 }

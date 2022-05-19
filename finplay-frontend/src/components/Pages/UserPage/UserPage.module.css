@@ -1,0 +1,12 @@
+.userpage {
+  display: flex;
+  flex-direction: column;
+}
+
+.userpage__filter {
+  position: absolute;
+}
+
+.userpage__games {
+  margin-top: 40px;
+}

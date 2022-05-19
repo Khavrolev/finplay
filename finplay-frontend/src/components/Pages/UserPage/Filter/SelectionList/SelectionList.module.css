@@ -1,0 +1,25 @@
+.selector {
+  display: flex;
+  flex-direction: column;
+}
+
+.selector__title {
+  color: #808080;
+}
+
+.selector__items {
+  margin-top: 15px;
+  padding: 0 10px;
+  gap: 10px 40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.selector__item {
+  padding: 5px 10px;
+}
+
+.selector__item_selected {
+  background: #fdbc11;
+  border-radius: 4px;
+}

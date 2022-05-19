@@ -1,7 +1,7 @@
 @hostname = http://localhost:4000
 
 ### Get data
-get {{hostname}}
+get {{hostname}}/data
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6InVzZXIiLCJhZG1pblJvbGUiOmZhbHNlLCJpYXQiOjE2NTI4MDgzMjAsImV4cCI6MTY1Mjg5NDcyMH0.7sC2kywYitiKbQfIWn3fJMaN5Y6eFChinjwjRIwTefQ
 
 ### Get test data

@@ -1,0 +1,10 @@
+.mainpage {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.mainpage__userpage {
+  margin-top: 24px;
+  position: relative;
+}

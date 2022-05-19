@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+}
+
+.header__logo {
+  margin-right: auto;
+}
+
+.header__logout {
+  margin: auto 0;
+}
+
+.logout {
+  display: flex;
+}
+
+.logout__icon {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  background-image: url("/public/img/small/logout.png");
+  background-repeat: no-repeat;
+}
+
+.logout__text {
+  color: #ec4466;
+}
+
+@media (min-width: 428px) {
+  .header {
+    margin: 0 -82px;
+    padding: 0 82px;
+    background-color: #ffffff;
+  }
+}

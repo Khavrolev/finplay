@@ -1,7 +1,9 @@
+import { AxiosResponse } from "axios";
 import $api from "../http/axios";
+import { GameData } from "../utils/interfaces";
 
 export default class UserService {
-  static fetchData() {
-    return $api.get("");
+  static getGameData(): Promise<AxiosResponse<GameData>> {
+    return $api.get<GameData>("/data");
   }
 }

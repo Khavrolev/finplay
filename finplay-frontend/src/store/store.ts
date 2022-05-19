@@ -1,21 +1,30 @@
 import axios from "axios";
 import { makeAutoObservable } from "mobx";
 import AuthService from "../services/authService";
-import { API_URL, LOCAL_STORAGE_TOKEN_NAME } from "../utils/constants";
-import { AuthResponse, IUser } from "../utils/interfaces";
+import UserService from "../services/dataService";
+import {
+  API_URL,
+  EMPTY_FILTER,
+  LOCAL_STORAGE_TOKEN_NAME,
+} from "../utils/constants";
+import { AuthResponse, GameData, IFilter, IUser } from "../utils/interfaces";
 
 export default class Store {
-  user: IUser | null = null;
+  user: IUser | undefined = undefined;
 
   loading = false;
 
   initialized = false;
 
+  gameData: GameData | undefined = undefined;
+
+  filter = EMPTY_FILTER;
+
   constructor() {
     makeAutoObservable(this);
   }
 
-  setUser(user: IUser | null) {
+  setUser(user: IUser | undefined) {
     this.user = user;
   }
 
@@ -25,6 +34,15 @@ export default class Store {
 
   setInitialized(bool: boolean) {
     this.initialized = bool;
+  }
+
+  setGameData(data: GameData | undefined) {
+    this.gameData = data;
+  }
+
+  setFilter(data: IFilter) {
+    this.filter = data;
+    console.log(this.filter);
   }
 
   async login(userName: string, password: string) {
@@ -45,7 +63,7 @@ export default class Store {
     try {
       await AuthService.logout();
       localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
-      this.setUser(null);
+      this.setUser(undefined);
     } catch (error) {
       console.error(error);
     } finally {
@@ -61,6 +79,18 @@ export default class Store {
       });
       localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, response.data.token);
       this.setUser(response.data.user);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async getGameData() {
+    this.setLoading(true);
+    try {
+      const response = await UserService.getGameData();
+      this.setGameData(response.data);
     } catch (error) {
       console.error(error);
     } finally {

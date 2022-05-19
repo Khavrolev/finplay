@@ -1,15 +1,13 @@
 .loginform {
   margin: auto;
+  flex: 1;
   max-width: 412px;
   display: flex;
   flex-direction: column;
 }
 
 .loginform__logo {
-  margin: auto;
-  width: 70px;
-  height: 70px;
-  background-image: url("/public/img/logo.svg");
+  margin: 0 auto;
 }
 
 .loginform__form {
@@ -64,8 +62,8 @@
   right: 16px;
   width: 16px;
   height: 10px;
-  background-image: url("/public/img/eye.png");
-  cursor: pointer;
+  background-image: url("/public/img/small/eye.png");
+  background-repeat: no-repeat;
 }
 
 .loginform__submit {
@@ -78,6 +76,14 @@
 
 .loginform__buttontext {
   margin: auto;
+}
+
+.loginform__loader {
+  margin: auto;
+  width: 14px;
+  height: 14px;
+  background-image: url("/public/img/small/loader.png");
+  background-repeat: no-repeat;
 }
 
 .loginform__submit {
