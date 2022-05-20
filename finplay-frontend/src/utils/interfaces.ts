@@ -1,5 +1,3 @@
-import { Sorting } from "./enums";
-
 export interface IDiv {
   divClass: string;
 }
@@ -17,7 +15,9 @@ export interface AuthResponse {
 export interface IGame {
   id: number;
   name: string;
+  date: Date;
   provider: number;
+  group: number;
   cover: string;
   coverLarge: string;
 }
@@ -40,12 +40,12 @@ export interface GameData {
 }
 
 export interface IKey {
-  [key: string]: boolean;
+  [key: number]: boolean;
 }
 
 export interface IFilter {
-  game: string;
+  gameName: string;
   groups: IKey;
   providers: IKey;
-  sorting: Sorting;
+  sorting: IKey;
 }

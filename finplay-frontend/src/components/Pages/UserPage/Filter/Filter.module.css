@@ -43,6 +43,25 @@
   margin-top: 32px;
 }
 
+.filter__info {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: row;
+}
+
+.filter__counter {
+  margin: auto auto auto 0;
+  color: #808080;
+}
+
+.filter__resetbutton {
+  padding: 11px 38px;
+  color: #808080;
+  background: #ffffff;
+  box-shadow: 0px -2px 18px rgba(128, 128, 128, 0.1);
+  border-radius: 4px;
+}
+
 .filter__showbutton {
   margin-top: 32px;
 }

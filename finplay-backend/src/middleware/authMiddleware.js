@@ -8,7 +8,6 @@ module.exports = (req, res, next) => {
 
   try {
     const token = req.headers.authorization;
-    console.log(token);
     if (!token) {
       return res.status(403).json({ message: "User is't authorized" });
     }
@@ -17,7 +16,7 @@ module.exports = (req, res, next) => {
     req.user = decodedData;
     next();
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(403).json({ message: "User is't authorized" });
   }
 };

@@ -8,5 +8,14 @@
 }
 
 .userpage__games {
-  margin-top: 40px;
+  margin-top: 212px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.userpage__img {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 8px;
 }

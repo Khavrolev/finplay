@@ -90,6 +90,7 @@ export default class Store {
     this.setLoading(true);
     try {
       const response = await UserService.getGameData();
+      console.log(response.data);
       this.setGameData(response.data);
     } catch (error) {
       console.error(error);

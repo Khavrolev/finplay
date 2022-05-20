@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { observer } from "mobx-react-lite";
 import { FC, useContext } from "react";
 import Context from "../../../../../context";
-import { SELECTION_GROUPS } from "../../../../../utils/constants";
+import { SELECTION_GROUPS, SORTING_TYPE } from "../../../../../utils/constants";
 import { SelectionGroups } from "../../../../../utils/enums";
 import { IDiv } from "../../../../../utils/interfaces";
 import classes from "./SelectionList.module.css";
@@ -27,6 +27,11 @@ const SelectionList: FC<SelectionListProps> = ({ type, divClass }) => {
         };
       case SelectionGroups.GameGroups:
         return { data: store.gameData.groups, filterType: store.filter.groups };
+      case SelectionGroups.Sorting:
+        return {
+          data: SORTING_TYPE,
+          filterType: store.filter.sorting,
+        };
       default:
         return { data: [], filterType: {} };
     }
@@ -34,7 +39,7 @@ const SelectionList: FC<SelectionListProps> = ({ type, divClass }) => {
 
   const items = getItems();
 
-  const handleClick = (id: number) => {
+  const switchFilterItem = (id: number) => {
     const filter = { ...items.filterType };
     if (filter[id]) {
       delete filter[id];
@@ -42,12 +47,19 @@ const SelectionList: FC<SelectionListProps> = ({ type, divClass }) => {
       filter[id] = true;
     }
 
+    return filter;
+  };
+
+  const handleClick = (id: number) => {
     switch (type) {
       case SelectionGroups.Providers:
-        store.setFilter({ ...store.filter, providers: filter });
+        store.setFilter({ ...store.filter, providers: switchFilterItem(id) });
         break;
       case SelectionGroups.GameGroups:
-        store.setFilter({ ...store.filter, groups: filter });
+        store.setFilter({ ...store.filter, groups: switchFilterItem(id) });
+        break;
+      case SelectionGroups.Sorting:
+        store.setFilter({ ...store.filter, sorting: { [id]: true } });
         break;
       default:
         break;

@@ -3,20 +3,28 @@ import debounce from "lodash.debounce";
 import { observer } from "mobx-react-lite";
 import { ChangeEvent, FC, useContext, useState } from "react";
 import Context from "../../../../context";
-import { DELAY_DEBOUNCE, SELECTION_GROUPS } from "../../../../utils/constants";
+import {
+  DELAY_DEBOUNCE,
+  EMPTY_FILTER,
+  SELECTION_GROUPS,
+} from "../../../../utils/constants";
 import { SelectionGroups } from "../../../../utils/enums";
 import { IDiv } from "../../../../utils/interfaces";
 import classes from "./Filter.module.css";
 import SelectionList from "./SelectionList/SelectionList";
 
-const Filter: FC<IDiv> = ({ divClass }) => {
+interface FilterProps extends IDiv {
+  countFiltredGames: number;
+}
+
+const Filter: FC<FilterProps> = ({ countFiltredGames, divClass }) => {
   const { store } = useContext(Context);
 
   const [showFiltres, setShowFiltres] = useState(false);
 
   const handleChangeSearch = debounce(
     (event: ChangeEvent<HTMLInputElement>) => {
-      store.setFilter({ ...store.filter, game: event.target.value });
+      store.setFilter({ ...store.filter, gameName: event.target.value });
     },
     DELAY_DEBOUNCE,
   );
@@ -46,6 +54,21 @@ const Filter: FC<IDiv> = ({ divClass }) => {
           type={SelectionGroups.GameGroups}
           divClass={classes.filter__selector}
         />
+        <SelectionList
+          type={SelectionGroups.Sorting}
+          divClass={classes.filter__selector}
+        />
+        <div className={classes.filter__info}>
+          <div
+            className={classes.filter__counter}
+          >{`Games amount: ${countFiltredGames}`}</div>
+          <button
+            className={classes.filter__resetbutton}
+            onClick={() => store.setFilter(EMPTY_FILTER)}
+          >
+            Reset
+          </button>
+        </div>
       </div>
       <button
         className={classNames(classes.filter__showbutton, classes.showbutton)}
