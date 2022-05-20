@@ -62,6 +62,18 @@
   border-radius: 4px;
 }
 
+.filter__resetbutton:hover {
+  color: #2b2b2b;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.06);
+}
+
+.filter__resetbutton:active {
+  color: #2b2b2b;
+  background: #fdfdfd;
+  box-shadow: 0px 0px 4px rgba(128, 128, 128, 0.06);
+}
+
 .filter__showbutton {
   margin-top: 32px;
 }

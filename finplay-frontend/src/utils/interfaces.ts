@@ -1,3 +1,5 @@
+import { SortingType } from "./enums";
+
 export interface IDiv {
   divClass: string;
 }
@@ -47,5 +49,5 @@ export interface IFilter {
   gameName: string;
   groups: IKey;
   providers: IKey;
-  sorting: IKey;
+  sorting: SortingType;
 }

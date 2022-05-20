@@ -1,7 +1,12 @@
-// eslint-disable-next-line import/prefer-default-export
 export enum SelectionGroups {
   GameName,
   Providers,
   GameGroups,
   Sorting,
+}
+
+export enum SortingType {
+  AZ,
+  ZA,
+  Newest,
 }

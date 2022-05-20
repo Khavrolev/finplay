@@ -24,8 +24,7 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
   const filtredGames = getFiltredGames();
 
   const sortGames = (prev: IGame, cur: IGame) => {
-    const sortingFunc =
-      SORTING_TYPE[+Object.keys(store.filter.sorting)[0]].func;
+    const sortingFunc = SORTING_TYPE[store.filter.sorting].func;
 
     if (sortingFunc(prev, cur)) {
       return 1;

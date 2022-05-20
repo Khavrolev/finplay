@@ -30,7 +30,7 @@ const SelectionList: FC<SelectionListProps> = ({ type, divClass }) => {
       case SelectionGroups.Sorting:
         return {
           data: SORTING_TYPE,
-          filterType: store.filter.sorting,
+          filterType: { [store.filter.sorting]: true },
         };
       default:
         return { data: [], filterType: {} };
@@ -59,7 +59,7 @@ const SelectionList: FC<SelectionListProps> = ({ type, divClass }) => {
         store.setFilter({ ...store.filter, groups: switchFilterItem(id) });
         break;
       case SelectionGroups.Sorting:
-        store.setFilter({ ...store.filter, sorting: { [id]: true } });
+        store.setFilter({ ...store.filter, sorting: id });
         break;
       default:
         break;
