@@ -65,17 +65,20 @@ const Filter: FC<FilterProps> = ({
           type={SelectionGroups.Sorting}
           divClass={classes.filter__selector}
         />
-        <input
-          className={classNames(
-            classes.filter__columnslider,
-            classes.filter_mobilehidden,
-          )}
-          type="range"
-          value={columnsCounter}
-          onChange={(event) => handleSliderChange(+event.target.value)}
-          min="2"
-          max="4"
-        />
+        <div className={classes.filter__columns}>
+          <div className={classes.filter__columnsheader}>Columns</div>
+          <input
+            className={classNames(
+              classes.filter__columnslider,
+              classes.filter_mobilehidden,
+            )}
+            type="range"
+            value={columnsCounter}
+            onChange={(event) => handleSliderChange(+event.target.value)}
+            min="2"
+            max="4"
+          />
+        </div>
         <div className={classes.filter__info}>
           <div
             className={classes.filter__counter}
