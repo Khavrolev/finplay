@@ -71,7 +71,11 @@ const Filter: FC<FilterProps> = ({ countFiltredGames, divClass }) => {
         </div>
       </div>
       <button
-        className={classNames(classes.filter__showbutton, classes.showbutton)}
+        className={classNames(
+          classes.filter__showbutton,
+          classes.showbutton,
+          classes.showbutton_hidden,
+        )}
         onClick={() => setShowFiltres(!showFiltres)}
       >
         <div className={classes.showbutton__icon}></div>

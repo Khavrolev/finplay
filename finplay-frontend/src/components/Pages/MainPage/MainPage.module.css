@@ -8,3 +8,9 @@
   margin-top: 24px;
   position: relative;
 }
+
+@media (min-width: 728px) {
+  .mainpage__userpage {
+    margin-top: 75px;
+  }
+}

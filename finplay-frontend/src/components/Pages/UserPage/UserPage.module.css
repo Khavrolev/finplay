@@ -9,13 +9,32 @@
 
 .userpage__games {
   margin-top: 212px;
+  flex: 1;
+  min-width: 300px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
   gap: 20px;
 }
 
+.userpage__game {
+  width: 100%;
+}
+
 .userpage__img {
-  object-fit: cover;
   width: 100%;
   border-radius: 8px;
+}
+
+@media (min-width: 728px) {
+  .userpage {
+    flex-direction: row-reverse;
+  }
+
+  .userpage__filter {
+    position: static;
+  }
+
+  .userpage__games {
+    margin: 0 20px auto 0;
+  }
 }

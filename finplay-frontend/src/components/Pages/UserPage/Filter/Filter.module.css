@@ -95,3 +95,17 @@
 .showbutton__text {
   color: #3f53be;
 }
+
+@media (min-width: 728px) {
+  .filter {
+    max-width: 412px;
+  }
+
+  .filter__selectors_hidden {
+    display: block;
+  }
+
+  .showbutton_hidden {
+    display: none;
+  }
+}
