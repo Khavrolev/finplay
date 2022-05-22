@@ -10,9 +10,9 @@
 .userpage__games {
   margin-top: 212px;
   flex: 1;
-  min-width: 300px;
+  grid-template-columns: 1fr 1fr;
+  min-width: 270px;
   display: grid;
-  grid-template-columns: auto auto;
   gap: 20px;
 }
 
@@ -36,5 +36,13 @@
 
   .userpage__games {
     margin: 0 20px auto 0;
+  }
+
+  .userpage__games_column3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .userpage__games_column4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }

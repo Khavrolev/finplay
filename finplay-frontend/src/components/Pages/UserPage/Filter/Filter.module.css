@@ -9,6 +9,10 @@
   border-radius: 8px;
 }
 
+.filter_mobilehidden {
+  display: none;
+}
+
 .search {
   display: flex;
   position: relative;
@@ -35,12 +39,16 @@
   margin-top: 32px;
 }
 
-.filter__selectors_hidden {
-  display: none;
-}
-
 .filter__selector:not(:first-child) {
   margin-top: 32px;
+}
+
+.filter__columnslider {
+  margin-top: 32px;
+  display: none;
+  width: 100%;
+  background: #fdbc11;
+  border-radius: 50px;
 }
 
 .filter__info {
@@ -101,7 +109,7 @@
     max-width: 412px;
   }
 
-  .filter__selectors_hidden {
+  .filter_mobilehidden {
     display: block;
   }
 

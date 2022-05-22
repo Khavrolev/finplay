@@ -15,9 +15,16 @@ import SelectionList from "./SelectionList/SelectionList";
 
 interface FilterProps extends IDiv {
   countFiltredGames: number;
+  columnsCounter: number;
+  handleSliderChange: (columns: number) => void;
 }
 
-const Filter: FC<FilterProps> = ({ countFiltredGames, divClass }) => {
+const Filter: FC<FilterProps> = ({
+  countFiltredGames,
+  columnsCounter,
+  handleSliderChange,
+  divClass,
+}) => {
   const { store } = useContext(Context);
 
   const [showFiltres, setShowFiltres] = useState(false);
@@ -43,7 +50,7 @@ const Filter: FC<FilterProps> = ({ countFiltredGames, divClass }) => {
       </div>
       <div
         className={classNames(classes.filter__selectors, {
-          [classes.filter__selectors_hidden]: !showFiltres,
+          [classes.filter_mobilehidden]: !showFiltres,
         })}
       >
         <SelectionList
@@ -57,6 +64,17 @@ const Filter: FC<FilterProps> = ({ countFiltredGames, divClass }) => {
         <SelectionList
           type={SelectionGroups.Sorting}
           divClass={classes.filter__selector}
+        />
+        <input
+          className={classNames(
+            classes.filter__columnslider,
+            classes.filter_mobilehidden,
+          )}
+          type="range"
+          value={columnsCounter}
+          onChange={(event) => handleSliderChange(+event.target.value)}
+          min="2"
+          max="4"
         />
         <div className={classes.filter__info}>
           <div

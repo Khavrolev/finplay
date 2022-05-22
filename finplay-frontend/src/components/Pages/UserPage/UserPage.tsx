@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { observer } from "mobx-react-lite";
-import { FC, useCallback, useContext } from "react";
+import { FC, useCallback, useContext, useState } from "react";
 import Context from "../../../context";
 import { SORTING_TYPE } from "../../../utils/constants";
 import { isFiltredGame } from "../../../utils/filter";
@@ -10,6 +10,9 @@ import classes from "./UserPage.module.css";
 
 const UserPage: FC<IDiv> = ({ divClass }) => {
   const { store } = useContext(Context);
+
+  const [columnsCounter, setColumnsCounter] = useState(2);
+  console.log(columnsCounter);
 
   const getFiltredGames = useCallback(() => {
     if (!store.gameData?.games) {
@@ -38,8 +41,15 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
       <Filter
         divClass={classes.userpage__filter}
         countFiltredGames={filtredGames.length}
+        columnsCounter={columnsCounter}
+        handleSliderChange={setColumnsCounter}
       />
-      <div className={classNames(classes.userpage__games, classes.games)}>
+      <div
+        className={classNames(classes.userpage__games, classes.games, {
+          [classes.userpage__games_column3]: columnsCounter === 3,
+          [classes.userpage__games_column4]: columnsCounter === 4,
+        })}
+      >
         {filtredGames.sort(sortGames).map((game) => (
           <button
             key={game.id}
