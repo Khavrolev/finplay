@@ -92,7 +92,7 @@ const Filter: FC<FilterProps> = ({
         className={classNames(
           classes.filter__showbutton,
           classes.showbutton,
-          classes.showbutton_hidden,
+          classes.filter_pchidden,
         )}
         onClick={() => setShowFiltres(!showFiltres)}
       >
