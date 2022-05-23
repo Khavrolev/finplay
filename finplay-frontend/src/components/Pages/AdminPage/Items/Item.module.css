@@ -1,0 +1,21 @@
+.content__button {
+  display: flex;
+}
+
+.content__logo {
+  display: flex;
+}
+
+.content__img {
+  width: 100%;
+}
+
+.content__title {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #2b2b2b;
+}
+
+.content__control {
+  margin-top: 5px;
+}

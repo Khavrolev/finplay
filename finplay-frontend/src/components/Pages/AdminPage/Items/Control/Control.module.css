@@ -1,0 +1,47 @@
+.control {
+  display: flex;
+}
+
+.control__action {
+  display: flex;
+}
+
+.control__action:not(:last-child) {
+  margin-right: auto;
+}
+
+.control__icon {
+  margin: 0 5px auto 0;
+  width: 12px;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.control__icon_edit {
+  background-image: url("/public/img/small/edit.png");
+}
+
+.control__icon_delete {
+  background-image: url("/public/img/small/delete.png");
+}
+
+.control__text {
+  margin: auto;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.control__text_edit {
+  color: #3f53be;
+}
+
+.control__text_delete {
+  color: #ec4466;
+}
+
+@media (min-width: 400px) {
+  .control__action:not(:last-child) {
+    margin-right: 32px;
+  }
+}

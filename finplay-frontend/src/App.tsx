@@ -24,9 +24,9 @@ const App = () => {
   return (
     <div className={classes.wrapper}>
       {!store.user && store.initialized && (
-        <LoginForm divClass={classes.wrapper__loginform} />
+        <LoginForm divClass={[classes.wrapper__loginform]} />
       )}
-      {store.user && <MainPage divClass={classes.wrapper__mainpage} />}
+      {store.user && <MainPage divClass={[classes.wrapper__mainpage]} />}
     </div>
   );
 };

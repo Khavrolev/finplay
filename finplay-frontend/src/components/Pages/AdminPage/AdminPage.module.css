@@ -1,0 +1,39 @@
+.adminpage {
+  display: flex;
+  flex-direction: column;
+}
+
+.adminpage__block {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #f2f2f2;
+  border-radius: 8px;
+}
+
+.adminpage__title {
+  display: flex;
+}
+
+.adminpage__text {
+  margin: auto auto auto 0;
+  font-size: 24px;
+  color: #2b2b2b;
+}
+
+.adminpage__addbutton {
+  padding: 7px;
+  width: 16px;
+  height: 16px;
+  background-image: url("/public/img/small/add.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid #3f53be;
+  border-radius: 4px;
+}
+
+.adminpage__content {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 10px;
+}

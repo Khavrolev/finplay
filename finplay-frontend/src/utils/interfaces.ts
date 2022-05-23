@@ -1,7 +1,7 @@
 import { SortingType } from "./enums";
 
 export interface IDiv {
-  divClass: string;
+  divClass: string[];
 }
 
 export interface IUser {

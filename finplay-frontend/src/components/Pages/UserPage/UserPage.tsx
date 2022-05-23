@@ -1,12 +1,18 @@
 import classNames from "classnames";
 import { observer } from "mobx-react-lite";
-import { CSSProperties, FC, useCallback, useContext, useState } from "react";
+import { FC, useCallback, useContext, useState } from "react";
 import Context from "../../../context";
 import { SORTING_TYPE } from "../../../utils/constants";
 import { isFiltredGame } from "../../../utils/filter";
 import { IDiv, IGame } from "../../../utils/interfaces";
 import Filter from "./Filter/Filter";
 import classes from "./UserPage.module.css";
+
+declare module "csstype" {
+  interface Properties {
+    "--sliderValue"?: number;
+  }
+}
 
 const UserPage: FC<IDiv> = ({ divClass }) => {
   const { store } = useContext(Context);
@@ -36,15 +42,15 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
   };
 
   return (
-    <div className={classNames(divClass, classes.userpage)}>
+    <div className={classNames(divClass[0], classes.userpage)}>
       <Filter
-        divClass={classes.userpage__filter}
+        divClass={[classes.userpage__filter]}
         countFiltredGames={filtredGames.length}
         columnsCounter={columnsCounter}
         handleSliderChange={setColumnsCounter}
       />
       <div
-        style={{ "--sliderValue": columnsCounter } as CSSProperties}
+        style={{ "--sliderValue": columnsCounter }}
         className={classNames(classes.userpage__games, classes.games)}
       >
         {filtredGames.sort(sortGames).map((game) => (

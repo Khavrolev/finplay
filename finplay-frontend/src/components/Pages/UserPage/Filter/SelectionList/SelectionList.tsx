@@ -67,7 +67,7 @@ const SelectionList: FC<SelectionListProps> = ({ type, divClass }) => {
   };
 
   return (
-    <div className={classNames(divClass, classes.selector)}>
+    <div className={classNames(divClass[0], classes.selector)}>
       <div className={classes.selector__title}>
         {SELECTION_GROUPS[type].title}
       </div>

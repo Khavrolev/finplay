@@ -9,6 +9,10 @@
   position: relative;
 }
 
+.mainpage__adminpage {
+  margin-top: 24px;
+}
+
 @media (min-width: 728px) {
   .mainpage__userpage {
     margin-top: 75px;

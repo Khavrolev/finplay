@@ -39,7 +39,7 @@ const Filter: FC<FilterProps> = ({
   );
 
   return (
-    <div className={classNames(divClass, classes.filter)}>
+    <div className={classNames(divClass[0], classes.filter)}>
       <div className={classNames(classes.filter__search, classes.search)}>
         <input
           className={classes.search__input}
@@ -57,23 +57,25 @@ const Filter: FC<FilterProps> = ({
       >
         <SelectionList
           type={SelectionGroups.Providers}
-          divClass={classes.filter__selector}
+          divClass={[classes.filter__selector]}
         />
         <SelectionList
           type={SelectionGroups.GameGroups}
-          divClass={classes.filter__selector}
+          divClass={[classes.filter__selector]}
         />
         <SelectionList
           type={SelectionGroups.Sorting}
-          divClass={classes.filter__selector}
+          divClass={[classes.filter__selector]}
         />
-        <div className={classes.filter__columns}>
+        <div
+          className={classNames(
+            classes.filter__columns,
+            classes.filter_mobilehidden,
+          )}
+        >
           <div className={classes.filter__columnsheader}>Columns</div>
           <input
-            className={classNames(
-              classes.filter__columnslider,
-              classes.filter_mobilehidden,
-            )}
+            className={classes.filter__columnslider}
             type="range"
             value={columnsCounter}
             onChange={(event) => handleSliderChange(+event.target.value)}

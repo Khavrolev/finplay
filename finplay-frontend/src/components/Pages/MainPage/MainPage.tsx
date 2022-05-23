@@ -20,11 +20,13 @@ const MainPage: FC<IDiv> = ({ divClass }) => {
   }, [store]);
 
   return (
-    <div className={classNames(divClass, classes.mainpage)}>
-      <Header divClass={classes.mainpage__header} />
-      {store.user?.adminRole && <AdminPage />}
+    <div className={classNames(divClass[0], classes.mainpage)}>
+      <Header divClass={[classes.mainpage__header]} />
+      {store.user?.adminRole && (
+        <AdminPage divClass={[classes.mainpage__adminpage]} />
+      )}
       {store.user && !store.user.adminRole && (
-        <UserPage divClass={classes.mainpage__userpage} />
+        <UserPage divClass={[classes.mainpage__userpage]} />
       )}
     </div>
   );

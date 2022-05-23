@@ -35,8 +35,8 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
   };
 
   return (
-    <div className={classNames(divClass, classes.loginform)}>
-      <Logo divClass={classes.loginform__logo} />
+    <div className={classNames(divClass[0], classes.loginform)}>
+      <Logo divClass={[classes.loginform__logo]} />
       <form className={classes.loginform__form} onSubmit={handleSubmit}>
         <div className={classes.loginform__wrapinput}>
           <input
