@@ -8,9 +8,11 @@
 }
 
 .userpage__games {
+  --columns: 2;
+  --sliderValue: 2;
   margin-top: 212px;
   flex: 1;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(min(var(--columns), var(--sliderValue)), 1fr);
   min-width: 270px;
   display: grid;
   gap: 20px;
@@ -35,14 +37,15 @@
   }
 
   .userpage__games {
+    --columns: 999;
     margin: 0 20px auto 0;
   }
 
-  .userpage__games_column3 {
+  /* .userpage__games_column3 {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
   .userpage__games_column4 {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
+  } */
 }

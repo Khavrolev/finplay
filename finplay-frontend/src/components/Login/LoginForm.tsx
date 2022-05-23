@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { FormEvent, useState, useContext, FC } from "react";
+import { FormEvent, useState, useContext, FC, MouseEvent } from "react";
 import classNames from "classnames";
 import classes from "./LoginForm.module.css";
 import Context from "../../context";
@@ -10,6 +10,12 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
   const { store } = useContext(Context);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
+
+  const handleShowPassword = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,7 +63,7 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
           <div className={classes.loginform__placeholder}>Password</div>
           <button
             className={classes.loginform__eye}
-            onClick={() => setShowPassword(!showPassword)}
+            onClick={handleShowPassword}
           ></button>
         </div>
         <button className={classes.loginform__submit} type="submit">

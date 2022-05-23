@@ -13,6 +13,8 @@ import { IDiv } from "../../../../utils/interfaces";
 import classes from "./Filter.module.css";
 import SelectionList from "./SelectionList/SelectionList";
 
+const sliderSize = { min: 2, max: 4, width: 25, height: 25 };
+
 interface FilterProps extends IDiv {
   countFiltredGames: number;
   columnsCounter: number;
@@ -75,9 +77,23 @@ const Filter: FC<FilterProps> = ({
             type="range"
             value={columnsCounter}
             onChange={(event) => handleSliderChange(+event.target.value)}
-            min="2"
-            max="4"
+            min={sliderSize.min}
+            max={sliderSize.max}
           />
+          <div
+            style={{
+              left: `calc(100% - ${sliderSize.width}px - (${
+                sliderSize.max - columnsCounter
+              } * (100% - ${sliderSize.width}px)/${
+                sliderSize.max - sliderSize.min
+              })`,
+              width: sliderSize.height,
+              lineHeight: `${sliderSize.height}px`,
+            }}
+            className={classes.filter__columnscounter}
+          >
+            {columnsCounter}
+          </div>
         </div>
         <div className={classes.filter__info}>
           <div
