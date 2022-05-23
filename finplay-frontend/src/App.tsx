@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import classes from "./App.module.css";
 import LoginForm from "./components/Login/LoginForm";
 import MainPage from "./components/Pages/MainPage/MainPage";
+import Popup from "./components/Popup/Popup";
 import Context from "./context";
 import { LOCAL_STORAGE_TOKEN_NAME } from "./utils/constants";
 
@@ -23,6 +24,7 @@ const App = () => {
 
   return (
     <div className={classes.wrapper}>
+      <Popup />
       {!store.user && store.initialized && (
         <LoginForm divClass={[classes.wrapper__loginform]} />
       )}

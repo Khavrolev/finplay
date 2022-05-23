@@ -9,7 +9,7 @@ interface AdminItemProps {
 
 const AdminItem: FC<AdminItemProps> = ({ item }) => {
   return (
-    <div key={item.id} className={classes.content}>
+    <div className={classes.content}>
       <button
         className={classes.content__button}
         onClick={() => console.log(item)}

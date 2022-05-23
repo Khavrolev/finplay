@@ -20,6 +20,8 @@ export default class Store {
 
   filter = EMPTY_FILTER;
 
+  modalOpened = false;
+
   constructor() {
     makeAutoObservable(this);
   }
@@ -42,7 +44,10 @@ export default class Store {
 
   setFilter(data: IFilter) {
     this.filter = data;
-    console.log(this.filter);
+  }
+
+  setModalOpened(bool: boolean) {
+    this.modalOpened = bool;
   }
 
   async login(userName: string, password: string) {
