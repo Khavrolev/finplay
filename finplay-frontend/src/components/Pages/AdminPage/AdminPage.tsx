@@ -2,7 +2,8 @@ import classNames from "classnames";
 import { observer } from "mobx-react-lite";
 import { FC, useContext } from "react";
 import Context from "../../../context";
-import { IDiv } from "../../../utils/interfaces";
+import { ActionPopupType } from "../../../utils/enums/components";
+import { IDiv } from "../../../utils/interfaces/components";
 import classes from "./AdminPage.module.css";
 import GroupItem from "./Items/GroupItem";
 
@@ -10,11 +11,11 @@ const AdminPage: FC<IDiv> = ({ divClass }) => {
   const { store } = useContext(Context);
 
   const handleAddGroup = () => {
-    store.setModalOpened(true);
+    store.setPopup({ type: ActionPopupType.Add, modalOpened: true });
   };
 
   return (
-    <div className={classNames(divClass[0], classes.adminpage)}>
+    <div className={classNames(divClass, classes.adminpage)}>
       <div className={classes.adminpage__block}>
         <div className={classes.adminpage__title}>
           <div className={classes.adminpage__text}>Groups</div>

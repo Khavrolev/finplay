@@ -3,13 +3,13 @@ import debounce from "lodash.debounce";
 import { observer } from "mobx-react-lite";
 import { ChangeEvent, FC, useContext, useState } from "react";
 import Context from "../../../../context";
+import { DELAY_DEBOUNCE } from "../../../../utils/constants/common";
 import {
-  DELAY_DEBOUNCE,
   EMPTY_FILTER,
   SELECTION_GROUPS,
-} from "../../../../utils/constants";
-import { SelectionGroups } from "../../../../utils/enums";
-import { IDiv } from "../../../../utils/interfaces";
+} from "../../../../utils/constants/filter";
+import { SelectionGroups } from "../../../../utils/enums/filter";
+import { IDiv } from "../../../../utils/interfaces/components";
 import classes from "./Filter.module.css";
 import SelectionList from "./SelectionList/SelectionList";
 
@@ -39,7 +39,7 @@ const Filter: FC<FilterProps> = ({
   );
 
   return (
-    <div className={classNames(divClass[0], classes.filter)}>
+    <div className={classNames(divClass, classes.filter)}>
       <div className={classNames(classes.filter__search, classes.search)}>
         <input
           className={classes.search__input}
@@ -57,15 +57,15 @@ const Filter: FC<FilterProps> = ({
       >
         <SelectionList
           type={SelectionGroups.Providers}
-          divClass={[classes.filter__selector]}
+          divClass={classes.filter__selector}
         />
         <SelectionList
           type={SelectionGroups.GameGroups}
-          divClass={[classes.filter__selector]}
+          divClass={classes.filter__selector}
         />
         <SelectionList
           type={SelectionGroups.Sorting}
-          divClass={[classes.filter__selector]}
+          divClass={classes.filter__selector}
         />
         <div
           className={classNames(

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IGroup } from "../../../../utils/interfaces";
+import { IGroup } from "../../../../utils/interfaces/gameData";
 import ControlItem from "./Control/ControlItem";
 import classes from "./Item.module.css";
 
@@ -23,7 +23,7 @@ const AdminItem: FC<AdminItemProps> = ({ item }) => {
         </div>
       </button>
       <div className={classes.content__title}>{item.name}</div>
-      <ControlItem divClass={[classes.content__control]} />
+      <ControlItem divClass={classes.content__control} />
     </div>
   );
 };

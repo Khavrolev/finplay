@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL, LOCAL_STORAGE_TOKEN_NAME } from "../utils/constants";
+import { API_URL, LOCAL_STORAGE_TOKEN_NAME } from "../utils/constants/common";
 
 const $api = axios.create({
   withCredentials: true,

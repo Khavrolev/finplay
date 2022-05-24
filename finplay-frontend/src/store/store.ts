@@ -2,12 +2,13 @@ import axios from "axios";
 import { makeAutoObservable } from "mobx";
 import AuthService from "../services/authService";
 import UserService from "../services/dataService";
-import {
-  API_URL,
-  EMPTY_FILTER,
-  LOCAL_STORAGE_TOKEN_NAME,
-} from "../utils/constants";
-import { AuthResponse, GameData, IFilter, IUser } from "../utils/interfaces";
+import { API_URL, LOCAL_STORAGE_TOKEN_NAME } from "../utils/constants/common";
+import POPUP_CLOSED from "../utils/constants/components";
+import { EMPTY_FILTER } from "../utils/constants/filter";
+import { IPopup } from "../utils/interfaces/components";
+import { IFilter } from "../utils/interfaces/filter";
+import { GameData } from "../utils/interfaces/gameData";
+import { AuthResponse, IUser } from "../utils/interfaces/user";
 
 export default class Store {
   user: IUser | undefined = undefined;
@@ -20,7 +21,7 @@ export default class Store {
 
   filter = EMPTY_FILTER;
 
-  modalOpened = false;
+  popup = POPUP_CLOSED;
 
   constructor() {
     makeAutoObservable(this);
@@ -46,8 +47,8 @@ export default class Store {
     this.filter = data;
   }
 
-  setModalOpened(bool: boolean) {
-    this.modalOpened = bool;
+  setPopup(data: IPopup) {
+    this.popup = data;
   }
 
   async login(userName: string, password: string) {

@@ -2,9 +2,10 @@ import classNames from "classnames";
 import { observer } from "mobx-react-lite";
 import { FC, useCallback, useContext, useState } from "react";
 import Context from "../../../context";
-import { SORTING_TYPE } from "../../../utils/constants";
+import { SORTING_TYPE } from "../../../utils/constants/filter";
 import { isFiltredGame } from "../../../utils/filter";
-import { IDiv, IGame } from "../../../utils/interfaces";
+import { IDiv } from "../../../utils/interfaces/components";
+import { IGame } from "../../../utils/interfaces/gameData";
 import Filter from "./Filter/Filter";
 import classes from "./UserPage.module.css";
 
@@ -42,9 +43,9 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
   };
 
   return (
-    <div className={classNames(divClass[0], classes.userpage)}>
+    <div className={classNames(divClass, classes.userpage)}>
       <Filter
-        divClass={[classes.userpage__filter]}
+        divClass={classes.userpage__filter}
         countFiltredGames={filtredGames.length}
         columnsCounter={columnsCounter}
         handleSliderChange={setColumnsCounter}

@@ -3,9 +3,9 @@ import { useContext, useEffect } from "react";
 import classes from "./App.module.css";
 import LoginForm from "./components/Login/LoginForm";
 import MainPage from "./components/Pages/MainPage/MainPage";
-import Popup from "./components/Popup/Popup";
+import Popup from "./components/Popups/Popup";
 import Context from "./context";
-import { LOCAL_STORAGE_TOKEN_NAME } from "./utils/constants";
+import { LOCAL_STORAGE_TOKEN_NAME } from "./utils/constants/common";
 
 const App = () => {
   const { store } = useContext(Context);
@@ -26,9 +26,9 @@ const App = () => {
     <div className={classes.wrapper}>
       <Popup />
       {!store.user && store.initialized && (
-        <LoginForm divClass={[classes.wrapper__loginform]} />
+        <LoginForm divClass={classes.wrapper__loginform} />
       )}
-      {store.user && <MainPage divClass={[classes.wrapper__mainpage]} />}
+      {store.user && <MainPage divClass={classes.wrapper__mainpage} />}
     </div>
   );
 };

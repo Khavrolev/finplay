@@ -20,6 +20,6 @@
 }
 
 .selector__item_selected {
-  background: #fdbc11;
+  background-color: #fdbc11;
   border-radius: 4px;
 }

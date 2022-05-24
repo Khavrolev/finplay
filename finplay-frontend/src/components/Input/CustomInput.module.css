@@ -1,0 +1,45 @@
+.input {
+  display: flex;
+  position: relative;
+}
+
+.input__item {
+  flex: 1;
+  background-color: #ffffff;
+  border: 1px solid #f2f2f2;
+  border-radius: 4px;
+}
+
+.input__item:placeholder-shown {
+  padding: 22px 16px;
+}
+
+.input__item_error {
+  border: 1px solid #ff0000;
+}
+
+.input__item:not(:placeholder-shown) {
+  padding: 30px 16px 14px 16px;
+}
+
+.input__placeholder {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.input__item:placeholder-shown + .input__placeholder {
+  opacity: 0;
+}
+
+.input__eye {
+  position: absolute;
+  top: calc(50% - 5px);
+  right: 16px;
+  width: 16px;
+  height: 10px;
+  background-image: url("/public/img/small/eye.png");
+  background-repeat: no-repeat;
+}

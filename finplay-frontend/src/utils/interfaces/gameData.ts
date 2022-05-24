@@ -1,19 +1,3 @@
-import { SortingType } from "./enums";
-
-export interface IDiv {
-  divClass: string[];
-}
-
-export interface IUser {
-  userName: string;
-  adminRole: boolean;
-}
-
-export interface AuthResponse {
-  token: string;
-  user: IUser;
-}
-
 export interface IGame {
   id: number;
   name: string;
@@ -39,15 +23,4 @@ export interface GameData {
   games: IGame[];
   groups: IGroup[];
   providers: IGameProvider[];
-}
-
-export interface IKey {
-  [key: number]: boolean;
-}
-
-export interface IFilter {
-  gameName: string;
-  groups: IKey;
-  providers: IKey;
-  sorting: SortingType;
 }

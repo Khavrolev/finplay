@@ -2,9 +2,12 @@ import classNames from "classnames";
 import { observer } from "mobx-react-lite";
 import { FC, useContext } from "react";
 import Context from "../../../../../context";
-import { SELECTION_GROUPS, SORTING_TYPE } from "../../../../../utils/constants";
-import { SelectionGroups } from "../../../../../utils/enums";
-import { IDiv } from "../../../../../utils/interfaces";
+import {
+  SELECTION_GROUPS,
+  SORTING_TYPE,
+} from "../../../../../utils/constants/filter";
+import { SelectionGroups } from "../../../../../utils/enums/filter";
+import { IDiv } from "../../../../../utils/interfaces/components";
 import classes from "./SelectionList.module.css";
 
 interface SelectionListProps extends IDiv {
@@ -67,7 +70,7 @@ const SelectionList: FC<SelectionListProps> = ({ type, divClass }) => {
   };
 
   return (
-    <div className={classNames(divClass[0], classes.selector)}>
+    <div className={classNames(divClass, classes.selector)}>
       <div className={classes.selector__title}>
         {SELECTION_GROUPS[type].title}
       </div>

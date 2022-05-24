@@ -1,21 +1,17 @@
 import { observer } from "mobx-react-lite";
-import { FormEvent, useState, useContext, FC, MouseEvent } from "react";
+import { FormEvent, useState, useContext, FC } from "react";
 import classNames from "classnames";
 import classes from "./LoginForm.module.css";
 import Context from "../../context";
-import { IDiv } from "../../utils/interfaces";
 import Logo from "../Logo/Logo";
+import CustomInput from "../Input/CustomInput";
+import SubmitButton from "../Buttons/SubmitButton";
+import { IDiv } from "../../utils/interfaces/components";
+import { FormButtonType, InputType } from "../../utils/enums/components";
 
 const LoginForm: FC<IDiv> = ({ divClass }) => {
   const { store } = useContext(Context);
-  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
-
-  const handleShowPassword = (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-
-    setShowPassword(!showPassword);
-  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,46 +31,32 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
   };
 
   return (
-    <div className={classNames(divClass[0], classes.loginform)}>
-      <Logo divClass={[classes.loginform__logo]} />
+    <div className={classNames(divClass, classes.loginform)}>
+      <Logo divClass={classes.loginform__logo} />
       <form className={classes.loginform__form} onSubmit={handleSubmit}>
-        <div className={classes.loginform__wrapinput}>
-          <input
-            className={classNames(classes.loginform__input, {
-              [classes.loginform__input_error]: error,
-            })}
-            type="text"
-            placeholder="Login"
-            name="login"
-            required
-          />
-          <div className={classes.loginform__placeholder}>Login</div>
-        </div>
-        <div className={classes.loginform__wrapinput}>
-          <input
-            className={classNames(classes.loginform__input, {
-              [classes.loginform__input_error]: error,
-            })}
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            name="password"
-            required
-          />
-          <div className={classes.loginform__placeholder}>Password</div>
-          <button
-            className={classes.loginform__eye}
-            onClick={handleShowPassword}
-          ></button>
-        </div>
-        <button className={classes.loginform__submit} type="submit">
-          <div className={classes.loginform__buttontext}>
-            {store.loading ? (
-              <div className={classes.loginform__loader}></div>
-            ) : (
-              "Login"
-            )}
-          </div>
-        </button>
+        <CustomInput
+          inputType={{
+            type: InputType.Text,
+            name: "login",
+            placeholder: "Login",
+          }}
+          error={error}
+          divClass={classes.loginform__input}
+        />
+        <CustomInput
+          inputType={{
+            type: InputType.Password,
+            name: "password",
+            placeholder: "Password",
+          }}
+          error={error}
+          divClass={classes.loginform__input}
+        />
+        <SubmitButton
+          name="Login"
+          type={FormButtonType.Login}
+          divClass={classes.loginform__submit}
+        />
       </form>
     </div>
   );

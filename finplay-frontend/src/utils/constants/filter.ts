@@ -1,10 +1,6 @@
-import { SelectionGroups, SortingType } from "./enums";
-import { isSortingAZ, isSortingNewest, isSortingZA } from "./filter";
-import { IFilter } from "./interfaces";
-
-export const API_URL = "http://localhost:4000";
-export const LOCAL_STORAGE_TOKEN_NAME = "finplay-token";
-export const DELAY_DEBOUNCE = 500;
+import { SelectionGroups, SortingType } from "../enums/filter";
+import { isSortingAZ, isSortingNewest, isSortingZA } from "../filter";
+import { IFilter } from "../interfaces/filter";
 
 export const SORTING_TYPE = [
   { id: SortingType.AZ, name: "A-Z", func: isSortingAZ },

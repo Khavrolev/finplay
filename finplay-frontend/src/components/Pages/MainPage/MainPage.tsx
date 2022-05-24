@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { observer } from "mobx-react-lite";
 import { FC, useContext, useEffect } from "react";
 import Context from "../../../context";
-import { IDiv } from "../../../utils/interfaces";
+import { IDiv } from "../../../utils/interfaces/components";
 import AdminPage from "../AdminPage/AdminPage";
 import Header from "../Header/Header";
 import UserPage from "../UserPage/UserPage";
@@ -20,13 +20,13 @@ const MainPage: FC<IDiv> = ({ divClass }) => {
   }, [store]);
 
   return (
-    <div className={classNames(divClass[0], classes.mainpage)}>
-      <Header divClass={[classes.mainpage__header]} />
+    <div className={classNames(divClass, classes.mainpage)}>
+      <Header divClass={classes.mainpage__header} />
       {store.user?.adminRole && (
-        <AdminPage divClass={[classes.mainpage__adminpage]} />
+        <AdminPage divClass={classes.mainpage__adminpage} />
       )}
       {store.user && !store.user.adminRole && (
-        <UserPage divClass={[classes.mainpage__userpage]} />
+        <UserPage divClass={classes.mainpage__userpage} />
       )}
     </div>
   );

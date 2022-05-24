@@ -1,4 +1,5 @@
-import { IFilter, IGame } from "./interfaces";
+import { IFilter } from "./interfaces/filter";
+import { IGame } from "./interfaces/gameData";
 
 // eslint-disable-next-line import/prefer-default-export
 export const isFiltredGame = (game: IGame, filter: IFilter) => {

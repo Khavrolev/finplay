@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import $api from "../http/axios";
-import { AuthResponse } from "../utils/interfaces";
+import { AuthResponse } from "../utils/interfaces/user";
 
 export default class AuthService {
   static async login(
