@@ -44,9 +44,7 @@ const Filter: FC<FilterProps> = ({
         <input
           className={classes.search__input}
           placeholder={SELECTION_GROUPS[SelectionGroups.GameName].title}
-          onChange={(event) => {
-            handleChangeSearch(event);
-          }}
+          onChange={handleChangeSearch}
         ></input>
         <div className={classes.search__icon}></div>
       </div>

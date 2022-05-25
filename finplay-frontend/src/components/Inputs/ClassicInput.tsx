@@ -1,19 +1,23 @@
 import classNames from "classnames";
 import { FC, MouseEvent, useState } from "react";
 import { InputType } from "../../utils/enums/components";
-import { IDiv, IInput } from "../../utils/interfaces/components";
+import { IDiv } from "../../utils/interfaces/components";
 import classes from "./ClassicInput.module.css";
 
 interface CustomInputProps extends IDiv {
-  inputType: IInput;
+  type: InputType;
+  value: string;
+  handleChangeValue: (value: string) => void;
+  placeholder: string;
   error?: boolean;
-  defaultValue?: string;
 }
 
 const CustomInput: FC<CustomInputProps> = ({
-  inputType,
+  type,
+  value,
+  handleChangeValue,
+  placeholder,
   error,
-  defaultValue,
   divClass,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,17 +35,17 @@ const CustomInput: FC<CustomInputProps> = ({
           [classes.input__item_error]: error,
         })}
         type={
-          showPassword || inputType.type === InputType.Text
+          showPassword || type === InputType.Text
             ? InputType.Text
             : InputType.Password
         }
-        placeholder={inputType.placeholder}
-        defaultValue={defaultValue}
-        name={inputType.name}
+        placeholder={placeholder}
+        value={value}
+        onChange={(event) => handleChangeValue(event.target.value)}
         required
       />
-      <div className={classes.input__placeholder}>{inputType.placeholder}</div>
-      {inputType.type === InputType.Password && (
+      <div className={classes.input__placeholder}>{placeholder}</div>
+      {type === InputType.Password && (
         <button
           className={classes.input__eye}
           onClick={handleShowPassword}

@@ -5,8 +5,8 @@ import { singleSelectionStyles } from "./SelectionInfo";
 import classes from "./Select.module.css";
 
 interface SingleSelectionProps {
-  selectedItem: number;
-  handleSelectedItem: (group: number) => void;
+  selectedItem: number | undefined;
+  handleSelectedItem: (group: number | undefined) => void;
   options: IOption[];
   placeholder: string;
 }
@@ -28,7 +28,7 @@ const SingleSelection: FC<SingleSelectionProps> = ({
         isMulti={undefined}
       />
       <div
-        style={{ opacity: selectedItem > 0 ? "0.5" : "0" }}
+        style={{ opacity: selectedItem ? "0.5" : "0" }}
         className={classes.select__placeholder}
       >
         {placeholder}

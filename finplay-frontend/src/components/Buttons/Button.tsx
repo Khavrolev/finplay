@@ -6,12 +6,13 @@ import { ActionType } from "../../utils/enums/components";
 import { IDiv } from "../../utils/interfaces/components";
 import classes from "./Button.module.css";
 
-interface SubmitButtonProps extends IDiv {
+interface ButtonProps extends IDiv {
   name: string;
   type: ActionType;
+  handleClick: () => void;
 }
 
-const SubmitButton: FC<SubmitButtonProps> = ({ name, type, divClass }) => {
+const Button: FC<ButtonProps> = ({ name, type, handleClick, divClass }) => {
   const { store } = useContext(Context);
 
   return (
@@ -21,7 +22,10 @@ const SubmitButton: FC<SubmitButtonProps> = ({ name, type, divClass }) => {
         classes.button,
         classes[`button_${type}`],
       )}
-      type="submit"
+      onClick={(event) => {
+        event.preventDefault();
+        handleClick();
+      }}
     >
       <div className={classes.button__text}>
         {store.loading ? <div className={classes.button__loader}></div> : name}
@@ -30,4 +34,4 @@ const SubmitButton: FC<SubmitButtonProps> = ({ name, type, divClass }) => {
   );
 };
 
-export default observer(SubmitButton);
+export default observer(Button);

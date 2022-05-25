@@ -1,63 +1,60 @@
 import { observer } from "mobx-react-lite";
-import { FormEvent, useState, useContext, FC } from "react";
+import { useState, useContext, FC, useCallback } from "react";
 import classNames from "classnames";
 import classes from "./LoginForm.module.css";
 import Context from "../../context";
 import Logo from "../Logo/Logo";
 import ClassicInput from "../Inputs/ClassicInput";
-import SubmitButton from "../Buttons/SubmitButton";
+import Button from "../Buttons/Button";
 import { IDiv } from "../../utils/interfaces/components";
 import { ActionType, InputType } from "../../utils/enums/components";
 
 const LoginForm: FC<IDiv> = ({ divClass }) => {
   const { store } = useContext(Context);
+
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const handleSubmit = useCallback(async () => {
     if (store.loading) {
       return;
     }
-
-    const login = event.currentTarget.login.value;
-    const password = event.currentTarget.password.value;
 
     await store.login(login, password);
 
     if (!store.user) {
       setError(true);
     }
-  };
+  }, [login, password, store]);
 
   return (
     <div className={classNames(divClass, classes.loginform)}>
       <Logo divClass={classes.loginform__logo} />
-      <form className={classes.loginform__form} onSubmit={handleSubmit}>
+      <div className={classes.loginform__form}>
         <ClassicInput
-          inputType={{
-            type: InputType.Text,
-            name: "login",
-            placeholder: "Login",
-          }}
+          type={InputType.Text}
+          value={login}
+          handleChangeValue={setLogin}
+          placeholder={"Login"}
           error={error}
           divClass={classes.loginform__input}
         />
         <ClassicInput
-          inputType={{
-            type: InputType.Password,
-            name: "password",
-            placeholder: "Password",
-          }}
+          type={InputType.Password}
+          value={password}
+          handleChangeValue={setPassword}
+          placeholder={"Password"}
           error={error}
           divClass={classes.loginform__input}
         />
-        <SubmitButton
+        <Button
           name="Login"
           type={ActionType.Login}
+          handleClick={handleSubmit}
           divClass={classes.loginform__submit}
         />
-      </form>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import { FC, FormEvent, useContext, useMemo, useState } from "react";
+import { FC, useCallback, useContext, useMemo, useState } from "react";
 import classes from "../Popup.module.css";
-import SubmitButton from "../../Buttons/SubmitButton";
-import { ActionType, InputType } from "../../../utils/enums/components";
+import Button from "../../Buttons/Button";
+import { ActionType } from "../../../utils/enums/components";
 import Context from "../../../context";
 import CheckBoxInput from "../../Inputs/CheckBoxInput";
 import SingleSelection from "../../Selects/SingleSelection";
@@ -14,16 +14,15 @@ interface DeleteGroupProps {
 const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
   const { store } = useContext(Context);
 
-  const [selectedGroup, setSelectedGroup] = useState(-1);
+  const [selectedGroup, setSelectedGroup] = useState<number | undefined>();
+  const [completelyDelete, setCompletelyDelete] = useState(false);
 
   const group = useMemo(
     () => store.gameData?.groups.find((item) => item.id === groupId),
     [groupId, store.gameData?.groups],
   );
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  };
+  const handleSubmit = useCallback(async () => {}, []);
 
   return (
     <div className={classes.popup__wrapper}>
@@ -36,7 +35,7 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
           className={classes.popup__text}
         >{`All ${group?.games.length} games will be moved to selected group.`}</div>
       </div>
-      <form className={classes.popup__form} onSubmit={handleSubmit}>
+      <div className={classes.popup__form}>
         <SingleSelection
           selectedItem={selectedGroup}
           handleSelectedItem={setSelectedGroup}
@@ -44,19 +43,18 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
           placeholder={"Move games to"}
         />
         <CheckBoxInput
-          inputType={{
-            type: InputType.Checkbox,
-            name: "delete",
-            placeholder: "Delete completely",
-          }}
+          placeholder="Delete completely"
+          value={completelyDelete}
+          handleChangeValue={setCompletelyDelete}
           divClass={classes.popup__checkbox}
         />
-        <SubmitButton
+        <Button
           name="Yes, delete"
           type={ActionType.Delete}
+          handleClick={handleSubmit}
           divClass={classes.popup__submit}
         />
-      </form>
+      </div>
     </div>
   );
 };
