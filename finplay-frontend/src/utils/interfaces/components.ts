@@ -1,4 +1,4 @@
-import { ActionPopupType, InputType } from "../enums/components";
+import { ActionType, InputType } from "../enums/components";
 
 export interface IDiv {
   divClass?: string;
@@ -11,6 +11,12 @@ export interface IInput {
 }
 
 export interface IPopup {
-  type: ActionPopupType | undefined;
+  type: ActionType | undefined;
   modalOpened: boolean;
+  id: number;
+}
+
+export interface IOption {
+  value: number;
+  label: string;
 }

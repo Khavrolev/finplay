@@ -6,15 +6,17 @@
   background-color: #fdfdfd;
   box-shadow: 0px -2px 18px rgba(128, 128, 128, 0.1);
   border-radius: 8px;
+  overflow: auto;
+  outline: none;
 }
 
 .popup__overlay {
   display: flex;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(43, 43, 43, 0.8);
 }
 
@@ -36,10 +38,22 @@
   line-height: 100%;
 }
 
+.popup__textblock {
+  margin-top: 40px;
+}
+
+.popup__text {
+  font-size: 18px;
+}
+
 .popup__form {
-  margin-top: 24px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
+}
+
+.popup__checkbox {
+  margin-top: 20px;
 }
 
 .popup__select {

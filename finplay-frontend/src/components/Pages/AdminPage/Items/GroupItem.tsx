@@ -23,7 +23,7 @@ const AdminItem: FC<AdminItemProps> = ({ item }) => {
         </div>
       </button>
       <div className={classes.content__title}>{item.name}</div>
-      <ControlItem divClass={classes.content__control} />
+      <ControlItem id={item.id} divClass={classes.content__control} />
     </div>
   );
 };

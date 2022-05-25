@@ -2,13 +2,13 @@ import classNames from "classnames";
 import { observer } from "mobx-react-lite";
 import { FC, useContext } from "react";
 import Context from "../../context";
-import { FormButtonType } from "../../utils/enums/components";
+import { ActionType } from "../../utils/enums/components";
 import { IDiv } from "../../utils/interfaces/components";
-import classes from "./SubmitButton.module.css";
+import classes from "./Button.module.css";
 
 interface SubmitButtonProps extends IDiv {
   name: string;
-  type: FormButtonType;
+  type: ActionType;
 }
 
 const SubmitButton: FC<SubmitButtonProps> = ({ name, type, divClass }) => {
@@ -18,13 +18,13 @@ const SubmitButton: FC<SubmitButtonProps> = ({ name, type, divClass }) => {
     <button
       className={classNames(
         divClass,
-        classes.submit,
-        classes[`submit_${type}`],
+        classes.button,
+        classes[`button_${type}`],
       )}
       type="submit"
     >
-      <div className={classes.submit__text}>
-        {store.loading ? <div className={classes.submit__loader}></div> : name}
+      <div className={classes.button__text}>
+        {store.loading ? <div className={classes.button__loader}></div> : name}
       </div>
     </button>
   );

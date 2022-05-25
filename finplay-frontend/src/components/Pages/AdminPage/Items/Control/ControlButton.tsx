@@ -1,17 +1,25 @@
 import classNames from "classnames";
-import { FC } from "react";
-import { ActionPopupType } from "../../../../../utils/enums/components";
+import { FC, useContext } from "react";
+import Context from "../../../../../context";
+import { ActionType } from "../../../../../utils/enums/components";
 import { IDiv } from "../../../../../utils/interfaces/components";
 import classes from "./Control.module.css";
 
 interface ControlButtonProps extends IDiv {
+  id: number;
   name: string;
-  type: ActionPopupType;
+  type: ActionType;
 }
 
-const ControlButton: FC<ControlButtonProps> = ({ name, type }) => {
+const ControlButton: FC<ControlButtonProps> = ({ id, name, type }) => {
+  const { store } = useContext(Context);
+
+  const handleClick = () => {
+    store.setPopup({ type, modalOpened: true, id });
+  };
+
   return (
-    <button className={classes.control__action}>
+    <button className={classes.control__action} onClick={handleClick}>
       <div
         className={classNames(
           classes.control__icon,

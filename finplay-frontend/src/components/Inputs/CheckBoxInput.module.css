@@ -1,0 +1,33 @@
+.input {
+  display: flex;
+}
+
+.input__item {
+  margin-right: 10px;
+  position: relative;
+  display: grid;
+  place-content: center;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ec4466;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.input__item::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  transform: scale(0);
+}
+
+.input__item:checked::before {
+  background-color: #ec4466;
+  transform: scale(1);
+}
+
+.input__label {
+  margin: auto 0;
+  font-size: 16px;
+  color: #ec4466;
+}

@@ -2,14 +2,20 @@ import classNames from "classnames";
 import { FC, MouseEvent, useState } from "react";
 import { InputType } from "../../utils/enums/components";
 import { IDiv, IInput } from "../../utils/interfaces/components";
-import classes from "./CustomInput.module.css";
+import classes from "./ClassicInput.module.css";
 
 interface CustomInputProps extends IDiv {
   inputType: IInput;
   error?: boolean;
+  defaultValue?: string;
 }
 
-const CustomInput: FC<CustomInputProps> = ({ inputType, error, divClass }) => {
+const CustomInput: FC<CustomInputProps> = ({
+  inputType,
+  error,
+  defaultValue,
+  divClass,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShowPassword = (event: MouseEvent<HTMLButtonElement>) => {
@@ -30,6 +36,7 @@ const CustomInput: FC<CustomInputProps> = ({ inputType, error, divClass }) => {
             : InputType.Password
         }
         placeholder={inputType.placeholder}
+        defaultValue={defaultValue}
         name={inputType.name}
         required
       />

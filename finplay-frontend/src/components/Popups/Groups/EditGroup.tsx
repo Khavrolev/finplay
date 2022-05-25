@@ -1,4 +1,5 @@
-import { FormEvent, useContext, useState } from "react";
+import { FC, FormEvent, useContext, useMemo, useState } from "react";
+import { observer } from "mobx-react-lite";
 import ClassicInput from "../../Inputs/ClassicInput";
 import classes from "../Popup.module.css";
 import SubmitButton from "../../Buttons/SubmitButton";
@@ -7,10 +8,21 @@ import MultiSelection from "../../Selects/MultiSelection";
 import Context from "../../../context";
 import { getOptions } from "../../Selects/SelectionInfo";
 
-const AddGroup = () => {
+interface EditGroupProps {
+  groupId: number;
+}
+
+const EditGroup: FC<EditGroupProps> = ({ groupId }) => {
   const { store } = useContext(Context);
 
-  const [selectedGames, setSelectedGames] = useState([] as number[]);
+  const group = useMemo(
+    () => store.gameData?.groups.find((item) => item.id === groupId),
+    [groupId, store.gameData?.groups],
+  );
+
+  const [selectedGames, setSelectedGames] = useState(
+    group?.games ? group?.games : [],
+  );
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,7 +30,7 @@ const AddGroup = () => {
 
   return (
     <div className={classes.popup__wrapper}>
-      <h1 className={classes.popup__title}>Group add</h1>
+      <h1 className={classes.popup__title}>Group editing</h1>
       <form className={classes.popup__form} onSubmit={handleSubmit}>
         <ClassicInput
           inputType={{
@@ -26,6 +38,7 @@ const AddGroup = () => {
             name: "name",
             placeholder: "Group name",
           }}
+          defaultValue={group?.name}
           divClass={classes.popup__input}
         />
         <MultiSelection
@@ -36,8 +49,8 @@ const AddGroup = () => {
           divClass={classes.popup__select}
         />
         <SubmitButton
-          name="Add"
-          type={ActionType.Add}
+          name="Save"
+          type={ActionType.Edit}
           divClass={classes.popup__submit}
         />
       </form>
@@ -45,4 +58,4 @@ const AddGroup = () => {
   );
 };
 
-export default AddGroup;
+export default observer(EditGroup);

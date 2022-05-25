@@ -1,23 +1,33 @@
-.submit {
+.button {
   height: 64px;
   box-shadow: 0px -2px 18px rgba(128, 128, 128, 0.1);
   border-radius: 4px;
 }
 
-.submit_login {
+.button_login {
   background-color: #fdbc11;
 }
 
-.submit_add {
+.button_add {
   width: 196px;
   background-color: #fdbc11;
 }
 
-.submit__text {
+.button_edit {
+  width: 196px;
+  background-color: #fdbc11;
+}
+
+.button_delete {
+  background-color: #ec4466;
+  color: #ffffff;
+}
+
+.button__text {
   margin: auto;
 }
 
-.submit__loader {
+.button__loader {
   margin: auto;
   width: 14px;
   height: 14px;

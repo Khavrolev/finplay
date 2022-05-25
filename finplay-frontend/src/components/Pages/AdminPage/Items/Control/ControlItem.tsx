@@ -3,13 +3,17 @@ import { FC } from "react";
 import ControlButton from "./ControlButton";
 import classes from "./Control.module.css";
 import { IDiv } from "../../../../../utils/interfaces/components";
-import { ActionPopupType } from "../../../../../utils/enums/components";
+import { ActionType } from "../../../../../utils/enums/components";
 
-const ControlItem: FC<IDiv> = ({ divClass }) => {
+interface ControlItemProps extends IDiv {
+  id: number;
+}
+
+const ControlItem: FC<ControlItemProps> = ({ id, divClass }) => {
   return (
     <div className={classNames(divClass, classes.control)}>
-      <ControlButton name="Edit" type={ActionPopupType.Edit} />
-      <ControlButton name="Delete" type={ActionPopupType.Delete} />
+      <ControlButton id={id} name="Edit" type={ActionType.Edit} />
+      <ControlButton id={id} name="Delete" type={ActionType.Delete} />
     </div>
   );
 };

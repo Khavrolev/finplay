@@ -4,10 +4,10 @@ import classNames from "classnames";
 import classes from "./LoginForm.module.css";
 import Context from "../../context";
 import Logo from "../Logo/Logo";
-import CustomInput from "../Input/CustomInput";
+import ClassicInput from "../Inputs/ClassicInput";
 import SubmitButton from "../Buttons/SubmitButton";
 import { IDiv } from "../../utils/interfaces/components";
-import { FormButtonType, InputType } from "../../utils/enums/components";
+import { ActionType, InputType } from "../../utils/enums/components";
 
 const LoginForm: FC<IDiv> = ({ divClass }) => {
   const { store } = useContext(Context);
@@ -34,7 +34,7 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
     <div className={classNames(divClass, classes.loginform)}>
       <Logo divClass={classes.loginform__logo} />
       <form className={classes.loginform__form} onSubmit={handleSubmit}>
-        <CustomInput
+        <ClassicInput
           inputType={{
             type: InputType.Text,
             name: "login",
@@ -43,7 +43,7 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
           error={error}
           divClass={classes.loginform__input}
         />
-        <CustomInput
+        <ClassicInput
           inputType={{
             type: InputType.Password,
             name: "password",
@@ -54,7 +54,7 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
         />
         <SubmitButton
           name="Login"
-          type={FormButtonType.Login}
+          type={ActionType.Login}
           divClass={classes.loginform__submit}
         />
       </form>
