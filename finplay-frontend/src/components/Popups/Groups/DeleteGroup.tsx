@@ -30,14 +30,9 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
   return (
     <div className={classes.popup__wrapper}>
       <h1 className={classes.popup__title}>Group delete</h1>
-      <div className={classes.popup__textblock}>
-        <div
-          className={classes.popup__text}
-        >{`Do you want to delete ${group?.name} group?`}</div>
-        <div
-          className={classes.popup__text}
-        >{`All ${group?.games.length} games will be moved to selected group.`}</div>
-      </div>
+      <div
+        className={classes.popup__text}
+      >{`Do you want to delete ${group?.name} group?\nAll ${group?.games.length} games will be moved to selected group.`}</div>
       <div className={classes.popup__form}>
         <SingleSelection
           selectedItem={selectedGroup}

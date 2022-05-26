@@ -41,11 +41,9 @@
   line-height: 100%;
 }
 
-.popup__textblock {
-  margin-top: 40px;
-}
-
 .popup__text {
+  margin-top: 40px;
+  white-space: pre-line;
   font-size: 18px;
 }
 
