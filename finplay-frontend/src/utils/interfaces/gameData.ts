@@ -3,7 +3,7 @@ export interface IGame {
   name: string;
   date: Date;
   provider: number;
-  group: number;
+  groups: number[];
   cover: string;
   coverLarge: string;
 }

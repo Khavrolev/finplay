@@ -1,13 +1,49 @@
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
 .content__button {
   display: flex;
 }
 
-.content__logo {
-  display: flex;
+.content__nogames {
+  width: 100%;
+  padding: 33% 0;
 }
 
-.content__img {
+.content__provider {
+  padding: 42px 23px;
   width: 100%;
+  background-color: #fdfdfd;
+  border: 1px solid #f2f2f2;
+  border-radius: 8px;
+}
+
+.content__logo {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.content__logo_game {
+  padding-top: 79%;
+  background-size: cover;
+}
+
+.content__logo_provider {
+  padding-top: 37%;
+  background-size: contain;
+}
+
+.content__logo:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.content__logo:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .content__title {

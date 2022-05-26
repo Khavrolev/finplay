@@ -1,7 +1,6 @@
 import { IFilter } from "./interfaces/filter";
 import { IGame } from "./interfaces/gameData";
 
-// eslint-disable-next-line import/prefer-default-export
 export const isFiltredGame = (game: IGame, filter: IFilter) => {
   const gameName = game.name
     .toLowerCase()
@@ -22,7 +21,9 @@ export const isFiltredGame = (game: IGame, filter: IFilter) => {
 
   const filtredGroups = Object.keys(filter.groups);
 
-  const groups = filtredGroups.length === 0 || filter.groups[game.group];
+  const groups =
+    filtredGroups.length === 0 ||
+    game.groups.find((item) => filter.groups[item]);
 
   return groups;
 };

@@ -23,15 +23,14 @@ const startApp = () => {
   try {
     const rawData = JSON.parse(fs.readFileSync(PATH_DATA));
     rawData.games = rawData.games.map((game) => {
-      const gameGroup = rawData.groups.find((group) =>
+      const gameGroup = rawData.groups.filter((group) =>
         group.games.includes(game.id),
       );
       return {
         ...game,
-        group: gameGroup ? gameGroup.id : 0,
+        groups: gameGroup.map((item) => item.id),
       };
     });
-    console.log(rawData);
     data = rawData;
     app.listen(PORT, () => {
       console.log(`Connected successfully on port ${PORT}`);

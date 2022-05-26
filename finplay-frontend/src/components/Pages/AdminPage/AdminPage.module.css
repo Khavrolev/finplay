@@ -5,9 +5,15 @@
 
 .adminpage__block {
   padding: 24px;
+  display: flex;
+  flex-direction: column;
   background-color: #ffffff;
   border: 1px solid #f2f2f2;
   border-radius: 8px;
+}
+
+.adminpage__block:not(:first-child) {
+  margin-top: 20px;
 }
 
 .adminpage__title {
