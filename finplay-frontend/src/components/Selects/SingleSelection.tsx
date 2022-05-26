@@ -28,6 +28,7 @@ const SingleSelection: FC<SingleSelectionProps> = ({
         onChange={(event) => handleSelectedItem(event ? event.value : -1)}
         isMulti={undefined}
         isClearable
+        isSearchable
         isDisabled={disabled}
       />
       <div

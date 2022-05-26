@@ -29,6 +29,7 @@ const MultiSelection: FC<MultiSelectionProps> = ({
         onChange={(event) =>
           handleSelectedItems(event.map((item) => item.value))
         }
+        isSearchable
         isMulti
       />
       <div

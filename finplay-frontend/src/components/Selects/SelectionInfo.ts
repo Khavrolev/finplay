@@ -3,6 +3,11 @@ import { IOption } from "../../utils/interfaces/components";
 import { IGame, IGroup } from "../../utils/interfaces/gameData";
 
 export const multiSelectionStyles: StylesConfig<IOption, true> = {
+  valueContainer: (provided) => ({
+    ...provided,
+    maxHeight: "500px",
+    overflow: "auto",
+  }),
   control: (provided, state) => ({
     ...provided,
     padding: state.hasValue ? "30px 6px 12px 6px" : "12px 6px",

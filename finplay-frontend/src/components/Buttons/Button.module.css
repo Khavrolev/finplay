@@ -44,3 +44,13 @@
   background-image: url("/public/img/small/loader.png");
   background-repeat: no-repeat;
 }
+
+@media (min-width: 768px) {
+  .button_delete {
+    width: 196px;
+  }
+
+  .button_cancel {
+    width: 196px;
+  }
+}
