@@ -4,6 +4,11 @@
   border-radius: 4px;
 }
 
+.button:disabled {
+  background-color: #f2f2f2;
+  color: #adadad;
+}
+
 .button_login {
   background-color: #fdbc11;
 }
@@ -20,6 +25,11 @@
 
 .button_delete {
   background-color: #ec4466;
+  color: #ffffff;
+}
+
+.button_cancel {
+  background-color: #6c6963;
   color: #ffffff;
 }
 

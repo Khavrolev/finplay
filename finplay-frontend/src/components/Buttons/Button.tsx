@@ -10,11 +10,17 @@ interface ButtonProps extends IDiv {
   name: string;
   type: ActionType;
   handleClick: () => void;
+  disabled: boolean;
 }
 
-const Button: FC<ButtonProps> = ({ name, type, handleClick, divClass }) => {
+const Button: FC<ButtonProps> = ({
+  name,
+  type,
+  handleClick,
+  disabled,
+  divClass,
+}) => {
   const { store } = useContext(Context);
-
   return (
     <button
       className={classNames(
@@ -26,6 +32,7 @@ const Button: FC<ButtonProps> = ({ name, type, handleClick, divClass }) => {
         event.preventDefault();
         handleClick();
       }}
+      disabled={disabled}
     >
       <div className={classes.button__text}>
         {store.loading ? <div className={classes.button__loader}></div> : name}

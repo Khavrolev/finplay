@@ -9,4 +9,5 @@ export enum ActionType {
   Add = "add",
   Edit = "edit",
   Delete = "delete",
+  Cancel = "cancel",
 }

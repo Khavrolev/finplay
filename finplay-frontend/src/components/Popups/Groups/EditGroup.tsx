@@ -49,6 +49,7 @@ const EditGroup: FC<EditGroupProps> = ({ groupId }) => {
           name="Save"
           type={ActionType.Edit}
           handleClick={handleSubmit}
+          disabled={name === ""}
           divClass={classes.popup__submit}
         />
       </div>

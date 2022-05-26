@@ -14,6 +14,10 @@
   cursor: pointer;
 }
 
+.input__item:disabled {
+  border: 1px solid #808080;
+}
+
 .input__item::before {
   content: "";
   width: 16px;
@@ -26,8 +30,16 @@
   transform: scale(1);
 }
 
+.input__item:disabled:checked::before {
+  background-color: #808080;
+}
+
 .input__label {
   margin: auto 0;
   font-size: 16px;
   color: #ec4466;
+}
+
+.input__label_disabled {
+  color: #808080;
 }

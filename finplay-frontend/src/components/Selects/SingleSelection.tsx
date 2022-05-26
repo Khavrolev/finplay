@@ -5,16 +5,17 @@ import { singleSelectionStyles } from "./SelectionInfo";
 import classes from "./Select.module.css";
 
 interface SingleSelectionProps {
-  selectedItem: number | undefined;
-  handleSelectedItem: (group: number | undefined) => void;
+  selectedItem: number;
+  handleSelectedItem: (group: number) => void;
   options: IOption[];
+  disabled: boolean;
   placeholder: string;
 }
-
 const SingleSelection: FC<SingleSelectionProps> = ({
   selectedItem,
   handleSelectedItem,
   options,
+  disabled,
   placeholder,
 }) => {
   return (
@@ -26,9 +27,11 @@ const SingleSelection: FC<SingleSelectionProps> = ({
         placeholder={placeholder}
         onChange={(event) => handleSelectedItem(event ? event.value : -1)}
         isMulti={undefined}
+        isClearable
+        isDisabled={disabled}
       />
       <div
-        style={{ opacity: selectedItem ? "0.5" : "0" }}
+        style={{ opacity: selectedItem !== -1 ? "0.5" : "0" }}
         className={classes.select__placeholder}
       >
         {placeholder}

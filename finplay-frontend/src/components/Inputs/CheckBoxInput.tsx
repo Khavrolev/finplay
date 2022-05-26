@@ -6,12 +6,14 @@ import classes from "./CheckBoxInput.module.css";
 interface CheckBoxInputProps extends IDiv {
   value: boolean;
   handleChangeValue: (value: boolean) => void;
+  disabled: boolean;
   placeholder: string;
 }
 
 const CheckBoxInput: FC<CheckBoxInputProps> = ({
   value,
   handleChangeValue,
+  disabled,
   placeholder,
   divClass,
 }) => {
@@ -21,10 +23,16 @@ const CheckBoxInput: FC<CheckBoxInputProps> = ({
         className={classes.input__item}
         type="checkbox"
         name="checkbox"
-        checked={value}
+        value={value ? 1 : 0}
         onClick={() => handleChangeValue(!value)}
+        disabled={disabled}
       />
-      <label className={classes.input__label} htmlFor="checkbox">
+      <label
+        className={classNames(classes.input__label, {
+          [classes.input__label_disabled]: disabled,
+        })}
+        htmlFor="checkbox"
+      >
         {placeholder}
       </label>
     </div>

@@ -52,6 +52,7 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
           name="Login"
           type={ActionType.Login}
           handleClick={handleSubmit}
+          disabled={false}
           divClass={classes.loginform__submit}
         />
       </div>

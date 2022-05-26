@@ -6,6 +6,7 @@ import Context from "../../../context";
 import CheckBoxInput from "../../Inputs/CheckBoxInput";
 import SingleSelection from "../../Selects/SingleSelection";
 import { getOptions } from "../../Selects/SelectionInfo";
+import POPUP_CLOSED from "../../../utils/constants/components";
 
 interface DeleteGroupProps {
   groupId: number;
@@ -14,7 +15,7 @@ interface DeleteGroupProps {
 const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
   const { store } = useContext(Context);
 
-  const [selectedGroup, setSelectedGroup] = useState<number | undefined>();
+  const [selectedGroup, setSelectedGroup] = useState(-1);
   const [completelyDelete, setCompletelyDelete] = useState(false);
 
   const group = useMemo(
@@ -23,6 +24,8 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
   );
 
   const handleSubmit = useCallback(async () => {}, []);
+
+  const handleCancel = () => store.setPopup(POPUP_CLOSED);
 
   return (
     <div className={classes.popup__wrapper}>
@@ -40,20 +43,32 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
           selectedItem={selectedGroup}
           handleSelectedItem={setSelectedGroup}
           options={getOptions(store.gameData?.groups)}
+          disabled={completelyDelete}
           placeholder={"Move games to"}
         />
         <CheckBoxInput
-          placeholder="Delete completely"
           value={completelyDelete}
           handleChangeValue={setCompletelyDelete}
+          disabled={selectedGroup !== -1}
+          placeholder="Delete completely"
           divClass={classes.popup__checkbox}
         />
-        <Button
-          name="Yes, delete"
-          type={ActionType.Delete}
-          handleClick={handleSubmit}
-          divClass={classes.popup__submit}
-        />
+        <div className={classes.popup__submit}>
+          <Button
+            name="Yes, delete"
+            type={ActionType.Delete}
+            handleClick={handleSubmit}
+            disabled={selectedGroup === -1 && !completelyDelete}
+            divClass={classes.popup__button}
+          />
+          <Button
+            name="No"
+            type={ActionType.Cancel}
+            handleClick={handleCancel}
+            disabled={false}
+            divClass={classes.popup__button}
+          />
+        </div>
       </div>
     </div>
   );

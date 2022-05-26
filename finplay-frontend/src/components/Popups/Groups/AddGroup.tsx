@@ -37,6 +37,7 @@ const AddGroup = () => {
           name="Add"
           type={ActionType.Add}
           handleClick={handleSubmit}
+          disabled={name === ""}
           divClass={classes.popup__submit}
         />
       </div>

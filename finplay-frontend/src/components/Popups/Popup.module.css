@@ -62,4 +62,10 @@
 
 .popup__submit {
   margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup__button:not(:first-child) {
+  margin-top: 20px;
 }
