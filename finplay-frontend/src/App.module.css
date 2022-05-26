@@ -81,7 +81,7 @@ textarea {
   padding: 12px 24px;
 }
 
-@media (min-width: 728px) {
+@media (min-width: 768px) {
   .wrapper__mainpage {
     padding: 0px 82px;
   }

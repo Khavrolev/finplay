@@ -131,7 +131,7 @@
   color: #3f53be;
 }
 
-@media (min-width: 728px) {
+@media (min-width: 768px) {
   .filter {
     max-width: 412px;
   }

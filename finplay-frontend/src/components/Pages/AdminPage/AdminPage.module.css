@@ -18,6 +18,7 @@
 
 .adminpage__title {
   display: flex;
+  min-height: 32px;
 }
 
 .adminpage__text {
@@ -42,4 +43,22 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px 10px;
+}
+
+@media (min-width: 890px) {
+  .adminpage {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .adminpage__block:not(:first-child) {
+    margin: 0;
+  }
+}
+
+@media (min-width: 930px) {
+  .adminpage__block {
+    padding: 32px;
+  }
 }

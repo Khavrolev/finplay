@@ -26,7 +26,7 @@
   color: #ec4466;
 }
 
-@media (min-width: 728px) {
+@media (min-width: 768px) {
   .header {
     margin: 0 -82px;
     padding: 0 82px;

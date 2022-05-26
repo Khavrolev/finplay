@@ -13,7 +13,7 @@
 }
 
 .content__provider {
-  padding: 42px 23px;
+  padding: 25% 19%;
   width: 100%;
   background-color: #fdfdfd;
   border: 1px solid #f2f2f2;
@@ -27,7 +27,7 @@
 }
 
 .content__logo_game {
-  padding-top: 79%;
+  padding-top: 72%;
   background-size: cover;
 }
 

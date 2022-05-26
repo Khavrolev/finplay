@@ -11,7 +11,7 @@
 }
 
 .control__icon {
-  margin: 0 5px auto 0;
+  margin-right: 5px;
   width: 12px;
   height: 12px;
   background-repeat: no-repeat;
@@ -27,7 +27,6 @@
 }
 
 .control__text {
-  margin: auto;
   font-size: 12px;
   line-height: 120%;
 }
@@ -40,8 +39,32 @@
   color: #ec4466;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 360px) {
   .control__action:not(:last-child) {
     margin-right: 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .control {
+    flex-direction: column;
+  }
+
+  .control__action {
+    margin-right: auto;
+  }
+
+  .control__action:not(:first-child) {
+    margin-top: 5px;
+  }
+}
+
+@media (min-width: 990px) {
+  .control {
+    flex-direction: row;
+  }
+
+  .control__action:not(:first-child) {
+    margin-top: 0;
   }
 }
