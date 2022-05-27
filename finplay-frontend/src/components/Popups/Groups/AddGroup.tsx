@@ -21,9 +21,10 @@ const AddGroup = () => {
       setError(true);
       return;
     }
+    store.createGroup({ name, games: selectedGames });
 
     store.setPopup(POPUP_CLOSED);
-  }, [name, store]);
+  }, [name, selectedGames, store]);
 
   return (
     <div className={classes.popup__wrapper}>

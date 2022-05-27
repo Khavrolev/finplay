@@ -15,7 +15,6 @@ import {
 } from "../utils/interfaces/gameData";
 import { AuthResponse, IUser } from "../utils/interfaces/user";
 import { UserEndpoints } from "../utils/enums/fetchData";
-import changeGroupInArray from "../utils/fetchData";
 
 export default class Store {
   user: IUser | undefined = undefined;
@@ -136,8 +135,8 @@ export default class Store {
     try {
       const response = await UserService.createGroup(addingGroup);
       const group = response.data;
-
-      this.setGroups(changeGroupInArray(this.groups, group));
+      console.log(group);
+      this.setGroups([...this.groups, group]);
     } catch (error) {
       console.error(error);
     } finally {

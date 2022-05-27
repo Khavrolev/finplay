@@ -22,17 +22,7 @@ app.use("/user", userRouter);
 
 const startApp = () => {
   try {
-    const rawData = JSON.parse(fs.readFileSync(PATH_DATA));
-    rawData.games = rawData.games.map((game) => {
-      const gameGroup = rawData.groups.filter((group) =>
-        group.games.includes(game.id),
-      );
-      return {
-        ...game,
-        groups: gameGroup.map((item) => item.id),
-      };
-    });
-    setData(rawData);
+    setData(JSON.parse(fs.readFileSync(PATH_DATA)));
     app.listen(PORT, () => {
       console.log(`Connected successfully on port ${PORT}`);
     });
