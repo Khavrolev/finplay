@@ -1,4 +1,5 @@
 import { FC, useCallback, useContext, useMemo, useState } from "react";
+import { observer } from "mobx-react-lite";
 import classes from "../Popup.module.css";
 import Button from "../../Buttons/Button";
 import { ActionType } from "../../../utils/enums/components";
@@ -19,8 +20,8 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
   const [completelyDelete, setCompletelyDelete] = useState(false);
 
   const group = useMemo(
-    () => store.gameData?.groups.find((item) => item.id === groupId),
-    [groupId, store.gameData?.groups],
+    () => store.groups.find((item) => item.id === groupId),
+    [groupId, store.groups],
   );
 
   const handleSubmit = useCallback(async () => {}, []);
@@ -37,7 +38,7 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
         <SingleSelection
           selectedItem={selectedGroup}
           handleSelectedItem={setSelectedGroup}
-          options={getOptions(store.gameData?.groups)}
+          options={getOptions(store.groups)}
           disabled={completelyDelete}
           placeholder={"Move games to"}
         />
@@ -69,4 +70,4 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
   );
 };
 
-export default DeleteGroup;
+export default observer(DeleteGroup);

@@ -11,7 +11,7 @@
 }
 
 .input__item:hover {
-  border-color: hsl(0, 0%, 70%);
+  border-color: #b3b3b3;
 }
 
 .input__item:placeholder-shown {
@@ -20,6 +20,10 @@
 
 .input__item_error {
   border: 1px solid #ff0000;
+}
+
+.input__item_error:hover {
+  border-color: #ff0000;
 }
 
 .input__item:not(:placeholder-shown) {

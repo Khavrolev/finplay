@@ -25,15 +25,9 @@
     ],
     "no-console": "off",
     "no-shadow": "off",
+    "no-param-reassign": "off",
     "@typescript-eslint/no-shadow": ["error"],
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"],
-    "no-param-reassign": [
-      "error",
-      {
-        "props": true,
-        "ignorePropertyModificationsFor": ["config"]
-      }
-    ]
+    "@typescript-eslint/no-unused-vars": ["error"]
   }
 }

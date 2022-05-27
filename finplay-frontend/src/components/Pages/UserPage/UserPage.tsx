@@ -21,14 +21,10 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
   const [columnsCounter, setColumnsCounter] = useState(2);
 
   const getFiltredGames = useCallback(() => {
-    if (!store.gameData?.games) {
-      return [];
-    }
-
-    return store.gameData.games.filter((game) =>
-      isFiltredGame(game, store.filter),
+    return store.games.filter((game) =>
+      isFiltredGame(store.groups, game, store.filter),
     );
-  }, [store.filter, store.gameData]);
+  }, [store.filter, store.games, store.groups]);
 
   const filtredGames = getFiltredGames();
 

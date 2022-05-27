@@ -7,6 +7,7 @@ import { ActionType, InputType } from "../../../utils/enums/components";
 import MultiSelection from "../../Selects/MultiSelection";
 import Context from "../../../context";
 import { getOptions } from "../../Selects/SelectionInfo";
+import POPUP_CLOSED from "../../../utils/constants/components";
 
 interface EditGroupProps {
   groupId: number;
@@ -16,17 +17,24 @@ const EditGroup: FC<EditGroupProps> = ({ groupId }) => {
   const { store } = useContext(Context);
 
   const group = useMemo(
-    () => store.gameData?.groups.find((item) => item.id === groupId),
-    [groupId, store.gameData?.groups],
+    () => store.groups.find((item) => item.id === groupId),
+    [groupId, store.groups],
   );
 
   const [name, setName] = useState(group?.name ? group?.name : "");
   const [selectedGames, setSelectedGames] = useState(
     group?.games ? group?.games : [],
   );
+  const [error, setError] = useState(false);
 
-  const handleSubmit = useCallback(async () => {}, []);
+  const handleSubmit = useCallback(async () => {
+    if (store.groups.find((item) => item.name === name)) {
+      setError(true);
+      return;
+    }
 
+    store.setPopup(POPUP_CLOSED);
+  }, [name, store]);
   return (
     <div className={classes.popup__wrapper}>
       <h1 className={classes.popup__title}>Group editing</h1>
@@ -36,12 +44,13 @@ const EditGroup: FC<EditGroupProps> = ({ groupId }) => {
           value={name}
           handleChangeValue={setName}
           placeholder={"Group name"}
+          error={error}
           divClass={classes.popup__input}
         />
         <MultiSelection
           selectedItems={selectedGames}
           handleSelectedItems={setSelectedGames}
-          options={getOptions(store.gameData?.games)}
+          options={getOptions(store.games)}
           placeholder={"Games"}
           divClass={classes.popup__select}
         />

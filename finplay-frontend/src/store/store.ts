@@ -7,8 +7,15 @@ import POPUP_CLOSED from "../utils/constants/components";
 import { EMPTY_FILTER } from "../utils/constants/filter";
 import { IPopup } from "../utils/interfaces/components";
 import { IFilter } from "../utils/interfaces/filter";
-import { GameData } from "../utils/interfaces/gameData";
+import {
+  CreateGroup,
+  IGame,
+  IGameProvider,
+  IGroup,
+} from "../utils/interfaces/gameData";
 import { AuthResponse, IUser } from "../utils/interfaces/user";
+import { UserEndpoints } from "../utils/enums/fetchData";
+import changeGroupInArray from "../utils/fetchData";
 
 export default class Store {
   user: IUser | undefined = undefined;
@@ -17,7 +24,11 @@ export default class Store {
 
   initialized = false;
 
-  gameData: GameData | undefined = undefined;
+  games: IGame[] = [];
+
+  groups: IGroup[] = [];
+
+  providers: IGameProvider[] = [];
 
   filter = EMPTY_FILTER;
 
@@ -39,8 +50,16 @@ export default class Store {
     this.initialized = bool;
   }
 
-  setGameData(data: GameData | undefined) {
-    this.gameData = data;
+  setGames(data: IGame[]) {
+    this.games = data;
+  }
+
+  setGroups(data: IGroup[]) {
+    this.groups = data;
+  }
+
+  setProviders(data: IGameProvider[]) {
+    this.providers = data;
   }
 
   setFilter(data: IFilter) {
@@ -80,9 +99,12 @@ export default class Store {
   async checkAuth() {
     this.setLoading(true);
     try {
-      const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, {
-        withCredentials: true,
-      });
+      const response = await axios.get<AuthResponse>(
+        `${API_URL}${UserEndpoints.Refresh}`,
+        {
+          withCredentials: true,
+        },
+      );
       localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, response.data.token);
       this.setUser(response.data.user);
     } catch (error) {
@@ -97,7 +119,25 @@ export default class Store {
     try {
       const response = await UserService.getGameData();
       console.log(response.data);
-      this.setGameData(response.data);
+
+      const { games, groups, providers } = response.data;
+      this.setGames(games);
+      this.setGroups(groups);
+      this.setProviders(providers);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  async createGroup(addingGroup: CreateGroup) {
+    this.setLoading(true);
+    try {
+      const response = await UserService.createGroup(addingGroup);
+      const group = response.data;
+
+      this.setGroups(changeGroupInArray(this.groups, group));
     } catch (error) {
       console.error(error);
     } finally {

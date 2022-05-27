@@ -21,6 +21,7 @@ const Button: FC<ButtonProps> = ({
   divClass,
 }) => {
   const { store } = useContext(Context);
+
   return (
     <button
       className={classNames(

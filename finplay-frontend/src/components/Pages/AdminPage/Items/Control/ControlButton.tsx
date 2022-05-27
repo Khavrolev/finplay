@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { observer } from "mobx-react-lite";
 import { FC, useContext } from "react";
 import Context from "../../../../../context";
 import { ActionType } from "../../../../../utils/enums/components";
@@ -38,4 +39,4 @@ const ControlButton: FC<ControlButtonProps> = ({ id, name, type }) => {
   );
 };
 
-export default ControlButton;
+export default observer(ControlButton);

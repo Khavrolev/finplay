@@ -1,31 +1,39 @@
 import { IFilter } from "./interfaces/filter";
-import { IGame } from "./interfaces/gameData";
+import { IGame, IGroup } from "./interfaces/gameData";
 
-export const isFiltredGame = (game: IGame, filter: IFilter) => {
-  const gameName = game.name
+export const isFiltredGame = (
+  groups: IGroup[],
+  game: IGame,
+  filter: IFilter,
+) => {
+  const gameNameIncludes = game.name
     .toLowerCase()
     .includes(filter.gameName.toLowerCase());
 
-  if (!gameName) {
+  if (!gameNameIncludes) {
     return false;
   }
 
   const filtredProviders = Object.keys(filter.providers);
 
-  const providers =
+  const providersIncludes =
     filtredProviders.length === 0 || filter.providers[game.provider];
 
-  if (!providers) {
+  if (!providersIncludes) {
     return false;
   }
 
   const filtredGroups = Object.keys(filter.groups);
 
-  const groups =
+  const groupsIncludes =
     filtredGroups.length === 0 ||
-    game.groups.find((item) => filter.groups[item]);
+    groups.reduce(
+      (acc, item) =>
+        acc || (filter.groups[item.id] && item.games.includes(game.id)),
+      false as boolean,
+    );
 
-  return groups;
+  return groupsIncludes;
 };
 
 export const isSortingAZ = (prev: IGame, cur: IGame) => {

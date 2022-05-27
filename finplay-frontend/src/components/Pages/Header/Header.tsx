@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { observer } from "mobx-react-lite";
 import { FC, useContext } from "react";
 import Context from "../../../context";
 import { IDiv } from "../../../utils/interfaces/components";
@@ -22,4 +23,4 @@ const Header: FC<IDiv> = ({ divClass }) => {
   );
 };
 
-export default Header;
+export default observer(Header);

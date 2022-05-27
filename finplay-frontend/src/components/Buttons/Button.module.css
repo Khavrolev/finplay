@@ -43,6 +43,16 @@
   height: 14px;
   background-image: url("/public/img/small/loader.png");
   background-repeat: no-repeat;
+  animation: rotation 3s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
 
 @media (min-width: 768px) {

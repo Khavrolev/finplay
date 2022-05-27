@@ -18,18 +18,14 @@ const SelectionList: FC<SelectionListProps> = ({ type, divClass }) => {
   const { store } = useContext(Context);
 
   const getItems = () => {
-    if (!store.gameData) {
-      return { data: [], filterType: {} };
-    }
-
     switch (type) {
       case SelectionGroups.Providers:
         return {
-          data: store.gameData.providers,
+          data: store.providers,
           filterType: store.filter.providers,
         };
       case SelectionGroups.GameGroups:
-        return { data: store.gameData.groups, filterType: store.filter.groups };
+        return { data: store.groups, filterType: store.filter.groups };
       case SelectionGroups.Sorting:
         return {
           data: SORTING_TYPE,

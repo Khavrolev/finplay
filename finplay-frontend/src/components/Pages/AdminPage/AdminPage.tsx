@@ -27,7 +27,7 @@ const AdminPage: FC<IDiv> = ({ divClass }) => {
           ></button>
         </div>
         <div className={classes.adminpage__content}>
-          {store.gameData?.groups.map((item) => (
+          {store.groups.map((item) => (
             <GroupItem key={item.id} item={item} />
           ))}
         </div>
@@ -37,7 +37,7 @@ const AdminPage: FC<IDiv> = ({ divClass }) => {
           <div className={classes.adminpage__text}>Games</div>
         </div>
         <div className={classes.adminpage__content}>
-          {store.gameData?.games.map((item) => (
+          {store.games.map((item) => (
             <GameItem key={item.id} item={item} />
           ))}
         </div>
@@ -47,7 +47,7 @@ const AdminPage: FC<IDiv> = ({ divClass }) => {
           <div className={classes.adminpage__text}>Providers</div>
         </div>
         <div className={classes.adminpage__content}>
-          {store.gameData?.providers.map((item) => (
+          {store.providers.map((item) => (
             <ProviderItem key={item.id} item={item} />
           ))}
         </div>

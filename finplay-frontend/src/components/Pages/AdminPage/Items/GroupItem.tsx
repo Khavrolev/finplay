@@ -26,8 +26,7 @@ const GroupItem: FC<GroupItemProps> = ({ item }) => {
           key={item.games[i]}
           style={{
             backgroundImage: `url(${
-              store.gameData?.games.find((game) => game.id === item.games[i])
-                ?.cover
+              store.games.find((game) => game.id === item.games[i])?.cover
             })`,
           }}
           className={classNames(

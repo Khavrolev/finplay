@@ -35,9 +35,7 @@ export const singleSelectionStyles: StylesConfig<IOption, false> = {
   }),
 };
 
-export const getOptions = (
-  items: IGame[] | IGroup[] | undefined,
-): IOption[] => {
+export const getOptions = (items: IGame[] | IGroup[]): IOption[] => {
   if (!items) {
     return [];
   }

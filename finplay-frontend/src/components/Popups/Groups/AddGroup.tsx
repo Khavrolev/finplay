@@ -1,4 +1,5 @@
 import { useCallback, useContext, useState } from "react";
+import { observer } from "mobx-react-lite";
 import ClassicInput from "../../Inputs/ClassicInput";
 import classes from "../Popup.module.css";
 import Button from "../../Buttons/Button";
@@ -6,14 +7,23 @@ import { ActionType, InputType } from "../../../utils/enums/components";
 import MultiSelection from "../../Selects/MultiSelection";
 import Context from "../../../context";
 import { getOptions } from "../../Selects/SelectionInfo";
+import POPUP_CLOSED from "../../../utils/constants/components";
 
 const AddGroup = () => {
   const { store } = useContext(Context);
 
   const [name, setName] = useState("");
   const [selectedGames, setSelectedGames] = useState([] as number[]);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = useCallback(async () => {}, []);
+  const handleSubmit = useCallback(async () => {
+    if (store.groups.find((item) => item.name === name)) {
+      setError(true);
+      return;
+    }
+
+    store.setPopup(POPUP_CLOSED);
+  }, [name, store]);
 
   return (
     <div className={classes.popup__wrapper}>
@@ -24,12 +34,13 @@ const AddGroup = () => {
           value={name}
           handleChangeValue={setName}
           placeholder={"Group name"}
+          error={error}
           divClass={classes.popup__input}
         />
         <MultiSelection
           selectedItems={selectedGames}
           handleSelectedItems={setSelectedGames}
-          options={getOptions(store.gameData?.games)}
+          options={getOptions(store.games)}
           placeholder={"Games"}
           divClass={classes.popup__select}
         />
@@ -45,4 +56,4 @@ const AddGroup = () => {
   );
 };
 
-export default AddGroup;
+export default observer(AddGroup);
