@@ -1,5 +1,6 @@
 import { useCallback, useContext, useState } from "react";
 import { observer } from "mobx-react-lite";
+import classNames from "classnames";
 import ClassicInput from "../../Inputs/ClassicInput";
 import classes from "../Popup.module.css";
 import Button from "../../Buttons/Button";
@@ -21,14 +22,26 @@ const AddGroup = () => {
       setError(true);
       return;
     }
-    store.createGroup({ name, games: selectedGames });
+
+    const addedGroup = await store.createGroup({ name, games: selectedGames });
+
+    if (!addedGroup) {
+      setError(true);
+      return;
+    }
 
     store.setPopup(POPUP_CLOSED);
   }, [name, selectedGames, store]);
 
   return (
     <div className={classes.popup__wrapper}>
-      <h1 className={classes.popup__title}>Group add</h1>
+      <h1
+        className={classNames(classes.popup__title, {
+          [classes.popup__title_error]: error,
+        })}
+      >
+        Group add
+      </h1>
       <div className={classes.popup__form}>
         <ClassicInput
           type={InputType.Text}

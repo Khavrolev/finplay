@@ -1,7 +1,7 @@
 import axios from "axios";
 import { makeAutoObservable } from "mobx";
 import AuthService from "../services/authService";
-import UserService from "../services/dataService";
+import DataService from "../services/dataService";
 import { API_URL, LOCAL_STORAGE_TOKEN_NAME } from "../utils/constants/common";
 import POPUP_CLOSED from "../utils/constants/components";
 import { EMPTY_FILTER } from "../utils/constants/filter";
@@ -9,6 +9,7 @@ import { IPopup } from "../utils/interfaces/components";
 import { IFilter } from "../utils/interfaces/filter";
 import {
   CreateGroup,
+  DeletedGroupResponse,
   IGame,
   IGameProvider,
   IGroup,
@@ -116,7 +117,7 @@ export default class Store {
   async getGameData() {
     this.setLoading(true);
     try {
-      const response = await UserService.getGameData();
+      const response = await DataService.getGameData();
       console.log(response.data);
 
       const { games, groups, providers } = response.data;
@@ -130,17 +131,71 @@ export default class Store {
     }
   }
 
-  async createGroup(addingGroup: CreateGroup) {
+  async createGroup(addingGroup: CreateGroup): Promise<IGroup | undefined> {
+    let group: IGroup | undefined;
+
     this.setLoading(true);
     try {
-      const response = await UserService.createGroup(addingGroup);
-      const group = response.data;
-      console.log(group);
+      const response = await DataService.createGroup(addingGroup);
+      group = response.data;
+
       this.setGroups([...this.groups, group]);
     } catch (error) {
       console.error(error);
     } finally {
       this.setLoading(false);
     }
+
+    return group;
+  }
+
+  async updateGroup(updatingGroup: IGroup): Promise<IGroup | undefined> {
+    let group: IGroup | undefined;
+
+    this.setLoading(true);
+    try {
+      const response = await DataService.updateGroup(updatingGroup);
+      group = response.data;
+
+      this.setGroups(
+        this.groups.map((item) => (item.id === group?.id ? group : item)),
+      );
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setLoading(false);
+    }
+
+    return group;
+  }
+
+  async deleteGroup(
+    deletingGroupId: number,
+    movingGroupId: number,
+  ): Promise<DeletedGroupResponse | undefined> {
+    let groups: DeletedGroupResponse | undefined;
+
+    this.setLoading(true);
+    try {
+      const response = await DataService.deleteGroup(
+        deletingGroupId,
+        movingGroupId,
+      );
+      groups = response.data;
+      console.log(groups.groupUpdated);
+      this.setGroups(
+        this.groups
+          .filter((item) => item.id !== groups?.groupDeleted.id)
+          .map((item) =>
+            item.id === groups?.groupUpdated?.id ? groups.groupUpdated : item,
+          ),
+      );
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.setLoading(false);
+    }
+
+    return groups;
   }
 }

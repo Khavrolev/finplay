@@ -9,7 +9,7 @@ import {
   DeletedGroupResponse,
 } from "../utils/interfaces/gameData";
 
-export default class UserService {
+export default class DataService {
   static async getGameData(): Promise<AxiosResponse<GameData>> {
     return $api.get<GameData>(GameDataEndpoints.GetData);
   }

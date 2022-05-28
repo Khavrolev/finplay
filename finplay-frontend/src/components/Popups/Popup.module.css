@@ -41,6 +41,10 @@
   line-height: 100%;
 }
 
+.popup__title_error {
+  color: #ff0000;
+}
+
 .popup__text {
   margin-top: 40px;
   white-space: pre-line;

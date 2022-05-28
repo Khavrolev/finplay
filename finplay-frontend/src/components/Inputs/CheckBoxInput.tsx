@@ -22,7 +22,7 @@ const CheckBoxInput: FC<CheckBoxInputProps> = ({
       <input
         className={classes.input__item}
         type="checkbox"
-        name="checkbox"
+        id="checkbox"
         value={value ? 1 : 0}
         onClick={() => handleChangeValue(!value)}
         disabled={disabled}

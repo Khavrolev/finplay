@@ -1,5 +1,6 @@
 import { FC, useCallback, useContext, useMemo, useState } from "react";
 import { observer } from "mobx-react-lite";
+import classNames from "classnames";
 import classes from "../Popup.module.css";
 import Button from "../../Buttons/Button";
 import { ActionType } from "../../../utils/enums/components";
@@ -18,19 +19,35 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
 
   const [selectedGroup, setSelectedGroup] = useState(-1);
   const [completelyDelete, setCompletelyDelete] = useState(false);
+  const [error, setError] = useState(false);
 
   const group = useMemo(
     () => store.groups.find((item) => item.id === groupId),
     [groupId, store.groups],
   );
 
-  const handleSubmit = useCallback(async () => {}, []);
+  const handleSubmit = useCallback(async () => {
+    const deletedGroup = await store.deleteGroup(groupId, selectedGroup);
+
+    if (!deletedGroup) {
+      setError(true);
+      return;
+    }
+
+    store.setPopup(POPUP_CLOSED);
+  }, [groupId, selectedGroup, store]);
 
   const handleCancel = () => store.setPopup(POPUP_CLOSED);
 
   return (
     <div className={classes.popup__wrapper}>
-      <h1 className={classes.popup__title}>Group delete</h1>
+      <h1
+        className={classNames(classes.popup__title, {
+          [classes.popup__title_error]: error,
+        })}
+      >
+        Group delete
+      </h1>
       <div
         className={classes.popup__text}
       >{`Do you want to delete ${group?.name} group?\nAll ${group?.games.length} games will be moved to selected group.`}</div>
@@ -38,7 +55,9 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
         <SingleSelection
           selectedItem={selectedGroup}
           handleSelectedItem={setSelectedGroup}
-          options={getOptions(store.groups)}
+          options={getOptions(
+            store.groups.filter((item) => item.id !== groupId),
+          )}
           disabled={completelyDelete}
           placeholder={"Move games to"}
         />

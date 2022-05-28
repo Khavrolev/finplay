@@ -1,5 +1,6 @@
 import { FC, useCallback, useContext, useMemo, useState } from "react";
 import { observer } from "mobx-react-lite";
+import classNames from "classnames";
 import ClassicInput from "../../Inputs/ClassicInput";
 import classes from "../Popup.module.css";
 import Button from "../../Buttons/Button";
@@ -28,16 +29,36 @@ const EditGroup: FC<EditGroupProps> = ({ groupId }) => {
   const [error, setError] = useState(false);
 
   const handleSubmit = useCallback(async () => {
-    if (store.groups.find((item) => item.name === name)) {
+    if (
+      store.groups.find((item) => item.name === name && item.id !== groupId)
+    ) {
+      setError(true);
+      return;
+    }
+
+    const editedGroup = await store.updateGroup({
+      id: groupId,
+      name,
+      games: selectedGames,
+    });
+
+    if (!editedGroup) {
       setError(true);
       return;
     }
 
     store.setPopup(POPUP_CLOSED);
-  }, [name, store]);
+  }, [groupId, name, selectedGames, store]);
+
   return (
     <div className={classes.popup__wrapper}>
-      <h1 className={classes.popup__title}>Group editing</h1>
+      <h1
+        className={classNames(classes.popup__title, {
+          [classes.popup__title_error]: error,
+        })}
+      >
+        Group editing
+      </h1>
       <div className={classes.popup__form}>
         <ClassicInput
           type={InputType.Text}
