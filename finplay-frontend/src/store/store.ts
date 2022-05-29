@@ -182,7 +182,6 @@ export default class Store {
         movingGroupId,
       );
       groups = response.data;
-      console.log(groups.groupUpdated);
       this.setGroups(
         this.groups
           .filter((item) => item.id !== groups?.groupDeleted.id)

@@ -1,4 +1,16 @@
 .popup {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(43, 43, 43, 0.8);
+}
+
+.popup__content {
   margin: auto 22px;
   padding: 32px;
   width: 628px;
@@ -9,18 +21,6 @@
   border-radius: 8px;
   overflow: auto;
   outline: none;
-}
-
-.popup__overlay {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(43, 43, 43, 0.8);
 }
 
 .popup__exit {
