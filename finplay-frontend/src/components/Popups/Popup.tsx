@@ -1,6 +1,5 @@
 import { observer } from "mobx-react-lite";
 import { FC, MouseEvent, useContext } from "react";
-// import ReactModal from "react-modal";
 import Context from "../../context";
 import POPUP_CLOSED from "../../utils/constants/components";
 import { ActionType } from "../../utils/enums/components";
