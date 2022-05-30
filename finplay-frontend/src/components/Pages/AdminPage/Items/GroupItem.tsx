@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import { observer } from "mobx-react-lite";
-import { FC, useContext } from "react";
+import { FC, memo, useContext } from "react";
 import Context from "../../../../context";
 import { IGroup } from "../../../../utils/interfaces/gameData";
 import ControlItem from "./Control/ControlItem";
@@ -10,12 +9,12 @@ interface GroupItemProps {
   item: IGroup;
 }
 
-const GroupItem: FC<GroupItemProps> = ({ item }) => {
+const GroupItem: FC<GroupItemProps> = memo(({ item }) => {
   const { store } = useContext(Context);
 
   const getCovers = () => {
     if (item.games.length === 0) {
-      return <div className={classes.content__nogames}>No Games</div>;
+      return <div className={classes.content__nogames}></div>;
     }
 
     const covers = [];
@@ -52,6 +51,6 @@ const GroupItem: FC<GroupItemProps> = ({ item }) => {
       <ControlItem id={item.id} divClass={classes.content__control} />
     </div>
   );
-};
+});
 
-export default observer(GroupItem);
+export default GroupItem;

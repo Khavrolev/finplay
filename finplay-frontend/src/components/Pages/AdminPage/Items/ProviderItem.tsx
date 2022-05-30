@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { IGameProvider } from "../../../../utils/interfaces/gameData";
 import classes from "./Item.module.css";
 
@@ -7,7 +7,7 @@ interface ProviderItemProps {
   item: IGameProvider;
 }
 
-const ProviderItem: FC<ProviderItemProps> = ({ item }) => {
+const ProviderItem: FC<ProviderItemProps> = memo(({ item }) => {
   return (
     <div className={classes.content}>
       <button
@@ -30,6 +30,6 @@ const ProviderItem: FC<ProviderItemProps> = ({ item }) => {
       <div className={classes.content__title}>{item.name}</div>
     </div>
   );
-};
+});
 
 export default ProviderItem;

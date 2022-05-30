@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { IGame } from "../../../../utils/interfaces/gameData";
 import classes from "./Item.module.css";
 
@@ -7,7 +7,7 @@ interface GameItemProps {
   item: IGame;
 }
 
-const GameItem: FC<GameItemProps> = ({ item }) => {
+const GameItem: FC<GameItemProps> = memo(({ item }) => {
   return (
     <div className={classes.content}>
       <button
@@ -28,6 +28,6 @@ const GameItem: FC<GameItemProps> = ({ item }) => {
       <div className={classes.content__title}>{item.name}</div>
     </div>
   );
-};
+});
 
 export default GameItem;
