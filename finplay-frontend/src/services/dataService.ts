@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import $api from "../http/axios";
-import { GameDataEndpoints } from "../utils/enums/fetchData";
+import GameDataEndpoint from "../utils/constants/fetchData";
 import {
   CreateGroup,
   GameData,
@@ -11,19 +11,19 @@ import {
 
 export default class DataService {
   static async getGameData(): Promise<AxiosResponse<GameData>> {
-    return $api.get<GameData>(GameDataEndpoints.GetData);
+    return $api.get<GameData>(GameDataEndpoint);
   }
 
   static async createGroup(group: CreateGroup): Promise<AxiosResponse<IGroup>> {
     return $api.post<IGroup, AxiosResponse<IGroup>, CreateGroup>(
-      GameDataEndpoints.CreateGroup,
+      GameDataEndpoint,
       group,
     );
   }
 
   static async updateGroup(group: IGroup): Promise<AxiosResponse<IGroup>> {
     return $api.put<IGroup, AxiosResponse<IGroup>, IGroup>(
-      GameDataEndpoints.UpdateGroup,
+      GameDataEndpoint,
       group,
     );
   }
@@ -36,7 +36,7 @@ export default class DataService {
       DeletedGroupResponse,
       AxiosResponse<DeletedGroupResponse>,
       DeleteGroup
-    >(`${GameDataEndpoints.DeleteGroup}?id=${deletingGroupId}`, {
+    >(`${GameDataEndpoint}?id=${deletingGroupId}`, {
       data: { movingGroupId },
     });
   }

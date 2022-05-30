@@ -2,7 +2,7 @@ import { FC, useCallback, useContext, useMemo, useState } from "react";
 import { observer } from "mobx-react-lite";
 import classNames from "classnames";
 import classes from "../Popup.module.css";
-import Button from "../../Buttons/Button";
+import LoaderButton from "../../Buttons/LoaderButton";
 import { ActionType } from "../../../utils/enums/components";
 import Context from "../../../context";
 import CheckBoxInput from "../../Inputs/CheckBoxInput";
@@ -69,14 +69,14 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
           divClass={classes.popup__checkbox}
         />
         <div className={classes.popup__submit}>
-          <Button
+          <LoaderButton
             name="Yes, delete"
             type={ActionType.Delete}
             handleClick={handleSubmit}
             disabled={selectedGroup === -1 && !completelyDelete}
             divClass={classes.popup__button}
           />
-          <Button
+          <LoaderButton
             name="No"
             type={ActionType.Cancel}
             handleClick={handleCancel}

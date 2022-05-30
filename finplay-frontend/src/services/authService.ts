@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import $api from "../http/axios";
-import { UserEndpoints } from "../utils/enums/fetchData";
+import UserEndpoints from "../utils/enums/fetchData";
 import { ILogin } from "../utils/interfaces/gameData";
 import { AuthResponse } from "../utils/interfaces/user";
 

@@ -14,7 +14,7 @@ import {
   IGroup,
 } from "../utils/interfaces/gameData";
 import { AuthResponse, IUser } from "../utils/interfaces/user";
-import { UserEndpoints } from "../utils/enums/fetchData";
+import UserEndpoints from "../utils/enums/fetchData";
 
 export default class Store {
   user: IUser | undefined = undefined;

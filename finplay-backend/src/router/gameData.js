@@ -11,8 +11,8 @@ const roleMiddleware = require("../middleware/roleMiddleware");
 const dataRouter = new Router();
 
 dataRouter.get("/", authMiddleware, getAllData);
-dataRouter.post("/creategroup", roleMiddleware, createGroup);
-dataRouter.put("/updategroup", roleMiddleware, updateGroup);
-dataRouter.delete("/deletegroup", roleMiddleware, deleteGroup);
+dataRouter.post("/", roleMiddleware, createGroup);
+dataRouter.put("/", roleMiddleware, updateGroup);
+dataRouter.delete("/", roleMiddleware, deleteGroup);
 
 module.exports = dataRouter;

@@ -5,7 +5,6 @@ import Context from "../../../context";
 import { SORTING_TYPE } from "../../../utils/constants/filter";
 import { isFiltredGame } from "../../../utils/filter";
 import { IDiv } from "../../../utils/interfaces/components";
-import { IKey } from "../../../utils/interfaces/filter";
 import { IGame } from "../../../utils/interfaces/gameData";
 import Filter from "./Filter/Filter";
 import classes from "./UserPage.module.css";
@@ -21,12 +20,13 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
 
   const [columnsCounter, setColumnsCounter] = useState(2);
 
-  const filtredGames = store.games
-    .filter((game) => isFiltredGame(store.groups, game, store.filter))
-    .reduce((acc, item) => {
-      acc[item.id] = true;
-      return acc;
-    }, {} as IKey);
+  const getFiltredGames = () => {
+    return store.games.filter((game) =>
+      isFiltredGame(store.groups, game, store.filter),
+    );
+  };
+
+  const filtredGames = getFiltredGames();
 
   const sortGames = (prev: IGame, cur: IGame) => {
     const sortingFunc = SORTING_TYPE[store.filter.sorting].func;
@@ -42,7 +42,7 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
     <div className={classNames(divClass, classes.userpage)}>
       <Filter
         divClass={classes.userpage__filter}
-        countFiltredGames={Object.keys(filtredGames).length}
+        countFiltredGames={filtredGames.length}
         columnsCounter={columnsCounter}
         handleSliderChange={setColumnsCounter}
       />
@@ -50,28 +50,23 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
         style={{ "--sliderValue": columnsCounter }}
         className={classNames(classes.userpage__games, classes.games)}
       >
-        {store.games
-          .slice()
-          .sort(sortGames)
-          .map((game) => (
-            <button
-              key={game.id}
-              className={classNames(classes.userpage__game, {
-                [classes.userpage__game_hidden]: !filtredGames[game.id],
-              })}
-              onClick={() => console.log(game)}
-            >
-              <img
-                className={classes.userpage__img}
-                src={game.coverLarge}
-                onError={({ currentTarget }) => {
-                  currentTarget.onerror = null;
-                  currentTarget.src = game.cover;
-                }}
-                alt="cover"
-              />
-            </button>
-          ))}
+        {filtredGames.sort(sortGames).map((game) => (
+          <button
+            key={game.id}
+            className={classNames(classes.userpage__game)}
+            onClick={() => console.log(game)}
+          >
+            <img
+              className={classes.userpage__img}
+              src={game.coverLarge}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src = game.cover;
+              }}
+              alt="cover"
+            />
+          </button>
+        ))}
       </div>
     </div>
   );

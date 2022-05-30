@@ -5,7 +5,7 @@ import classes from "./LoginForm.module.css";
 import Context from "../../context";
 import Logo from "../Logo/Logo";
 import ClassicInput from "../Inputs/ClassicInput";
-import Button from "../Buttons/Button";
+import LoaderButton from "../Buttons/LoaderButton";
 import { IDiv } from "../../utils/interfaces/components";
 import { ActionType, InputType } from "../../utils/enums/components";
 
@@ -48,7 +48,7 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
           error={error}
           divClass={classes.loginform__input}
         />
-        <Button
+        <LoaderButton
           name="Login"
           type={ActionType.Login}
           handleClick={handleSubmit}

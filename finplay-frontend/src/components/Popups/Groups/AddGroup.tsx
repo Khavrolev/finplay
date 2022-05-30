@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 import classNames from "classnames";
 import ClassicInput from "../../Inputs/ClassicInput";
 import classes from "../Popup.module.css";
-import Button from "../../Buttons/Button";
+import LoaderButton from "../../Buttons/LoaderButton";
 import { ActionType, InputType } from "../../../utils/enums/components";
 import MultiSelection from "../../Selects/MultiSelection";
 import Context from "../../../context";
@@ -58,7 +58,7 @@ const AddGroup = () => {
           placeholder={"Games"}
           divClass={classes.popup__select}
         />
-        <Button
+        <LoaderButton
           name="Add"
           type={ActionType.Add}
           handleClick={handleSubmit}
