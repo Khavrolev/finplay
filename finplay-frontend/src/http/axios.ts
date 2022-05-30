@@ -1,15 +1,14 @@
 import axios from "axios";
-import { API_URL, LOCAL_STORAGE_TOKEN_NAME } from "../utils/constants/common";
 
 const $api = axios.create({
   withCredentials: true,
-  baseURL: API_URL,
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 $api.interceptors.request.use((config) => {
   if (config.headers) {
     config.headers.Authorization = `Bearer ${localStorage.getItem(
-      LOCAL_STORAGE_TOKEN_NAME,
+      `${process.env.REACT_APP_LOCAL_STORAGE_TOKEN_NAME}`,
     )}`;
   }
   return config;

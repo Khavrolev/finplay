@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { SECRET, COOKIE_NAME } = require("./config");
 
 const users = [
   {
@@ -16,12 +15,12 @@ const generateAccessToken = (userName, adminRole) => {
     adminRole,
   };
 
-  return jwt.sign(payload, SECRET, { expiresIn: "24h" });
+  return jwt.sign(payload, process.env.SECRET, { expiresIn: "24h" });
 };
 
 const validateAccessToken = (token) => {
   try {
-    const userData = jwt.verify(token, SECRET);
+    const userData = jwt.verify(token, process.env.SECRET);
 
     return userData;
   } catch (error) {
@@ -48,7 +47,7 @@ exports.login = (req, res) => {
     const { adminRole } = user;
     const token = generateAccessToken(userName, adminRole);
 
-    res.cookie(COOKIE_NAME, token, {
+    res.cookie(process.env.COOKIE_NAME, token, {
       maxAge: 24 * 60 * 60 * 1000,
       httponly: true,
     });
@@ -61,7 +60,7 @@ exports.login = (req, res) => {
 
 exports.refresh = (req, res) => {
   try {
-    const oldToken = req.cookies[COOKIE_NAME];
+    const oldToken = req.cookies[process.env.COOKIE_NAME];
 
     if (!oldToken) {
       return res.status(403).json({ message: "User is't authorized" });
@@ -79,7 +78,7 @@ exports.refresh = (req, res) => {
     }
     const token = generateAccessToken(userName, adminRole);
 
-    res.cookie(COOKIE_NAME, token, {
+    res.cookie(process.env.COOKIE_NAME, token, {
       maxAge: 24 * 60 * 60 * 1000,
       httponly: true,
     });
@@ -91,8 +90,8 @@ exports.refresh = (req, res) => {
 
 exports.logout = (req, res) => {
   try {
-    const token = req.cookies[COOKIE_NAME];
-    res.clearCookie(COOKIE_NAME);
+    const token = req.cookies[process.env.COOKIE_NAME];
+    res.clearCookie(process.env.COOKIE_NAME);
     return res.status(200).json(token);
   } catch (error) {
     console.error(error);

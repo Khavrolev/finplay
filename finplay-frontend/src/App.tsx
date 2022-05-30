@@ -5,14 +5,17 @@ import LoginForm from "./components/Login/LoginForm";
 import MainPage from "./components/Pages/MainPage/MainPage";
 import Popup from "./components/Popups/Popup";
 import Context from "./context";
-import { LOCAL_STORAGE_TOKEN_NAME } from "./utils/constants/common";
 
 const App = () => {
   const { store } = useContext(Context);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (localStorage.getItem(LOCAL_STORAGE_TOKEN_NAME)) {
+      if (
+        localStorage.getItem(
+          `${process.env.REACT_APP_LOCAL_STORAGE_TOKEN_NAME}`,
+        )
+      ) {
         await store.checkAuth();
       }
 

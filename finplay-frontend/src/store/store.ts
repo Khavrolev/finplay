@@ -2,7 +2,6 @@ import axios from "axios";
 import { makeAutoObservable } from "mobx";
 import AuthService from "../services/authService";
 import DataService from "../services/dataService";
-import { API_URL, LOCAL_STORAGE_TOKEN_NAME } from "../utils/constants/common";
 import POPUP_CLOSED from "../utils/constants/components";
 import { EMPTY_FILTER } from "../utils/constants/filter";
 import { IPopup } from "../utils/interfaces/components";
@@ -74,7 +73,10 @@ export default class Store {
     this.setLoading(true);
     try {
       const response = await AuthService.login(userName, password);
-      localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, response.data.token);
+      localStorage.setItem(
+        `${process.env.REACT_APP_LOCAL_STORAGE_TOKEN_NAME}`,
+        response.data.token,
+      );
       this.setUser(response.data.user);
     } catch (error) {
       console.error(error);
@@ -87,7 +89,9 @@ export default class Store {
     this.setLoading(true);
     try {
       await AuthService.logout();
-      localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+      localStorage.removeItem(
+        `${process.env.REACT_APP_LOCAL_STORAGE_TOKEN_NAME}`,
+      );
       this.setUser(undefined);
     } catch (error) {
       console.error(error);
@@ -100,12 +104,15 @@ export default class Store {
     this.setLoading(true);
     try {
       const response = await axios.get<AuthResponse>(
-        `${API_URL}${UserEndpoints.Refresh}`,
+        `${process.env.REACT_APP_API_URL}${UserEndpoints.Refresh}`,
         {
           withCredentials: true,
         },
       );
-      localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME, response.data.token);
+      localStorage.setItem(
+        `${process.env.REACT_APP_LOCAL_STORAGE_TOKEN_NAME}`,
+        response.data.token,
+      );
       this.setUser(response.data.user);
     } catch (error) {
       console.error(error);

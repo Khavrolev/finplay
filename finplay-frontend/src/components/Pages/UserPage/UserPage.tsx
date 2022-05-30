@@ -58,7 +58,11 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
           >
             <img
               className={classes.userpage__img}
-              src={game.cover}
+              src={game.coverLarge}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src = game.cover;
+              }}
               alt="cover"
             />
           </button>

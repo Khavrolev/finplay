@@ -1,9 +1,7 @@
 import classNames from "classnames";
-import debounce from "lodash.debounce";
 import { observer } from "mobx-react-lite";
 import { ChangeEvent, FC, useContext, useState } from "react";
 import Context from "../../../../context";
-import { DELAY_DEBOUNCE } from "../../../../utils/constants/common";
 import {
   EMPTY_FILTER,
   SELECTION_GROUPS,
@@ -31,12 +29,9 @@ const Filter: FC<FilterProps> = ({
 
   const [showFiltres, setShowFiltres] = useState(false);
 
-  const handleChangeSearch = debounce(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      store.setFilter({ ...store.filter, gameName: event.target.value });
-    },
-    DELAY_DEBOUNCE,
-  );
+  const handleChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    store.setFilter({ ...store.filter, gameName: event.target.value });
+  };
 
   return (
     <div className={classNames(divClass, classes.filter)}>
