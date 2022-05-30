@@ -22,6 +22,10 @@
   width: 100%;
 }
 
+.userpage__game_hidden {
+  display: none;
+}
+
 .userpage__img {
   width: 100%;
   border-radius: 8px;
