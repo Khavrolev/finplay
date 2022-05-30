@@ -125,7 +125,6 @@ export default class Store {
     this.setLoading(true);
     try {
       const response = await DataService.getGameData();
-      console.log(response.data);
 
       const { games, groups, providers } = response.data;
       this.setGames(games);
