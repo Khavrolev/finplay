@@ -53,9 +53,9 @@
 }
 
 .filter__columnslider {
+  -webkit-appearance: none;
   margin-top: 10px;
   width: 100%;
-  background-color: #fdbc11;
   border-radius: 50px;
 }
 
@@ -63,7 +63,6 @@
   -webkit-appearance: none;
   width: 25px;
   height: 15px;
-  background-color: #fdbc11;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -73,9 +72,13 @@
   justify-content: center;
   position: absolute;
   top: 25px;
-  background-color: #fdbc11;
+  background-color: #f2f2f2;
   border-radius: 50%;
   pointer-events: none;
+}
+
+.filter__columnscounter_filled {
+  background-color: #fdbc11;
 }
 
 .filter__info {

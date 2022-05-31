@@ -33,6 +33,37 @@ const Filter: FC<FilterProps> = ({
     store.setFilter({ ...store.filter, gameName: event.target.value });
   };
 
+  const getColumnsCounters = () => {
+    const columns = [];
+    for (let i = sliderSize.min; i <= sliderSize.max; i += 1) {
+      columns.push(
+        <div
+          key={i}
+          style={{
+            left: `calc(100% - ${sliderSize.width}px - (${
+              sliderSize.max - i
+            } * (100% - ${sliderSize.width}px)/${
+              sliderSize.max - sliderSize.min
+            })`,
+            width: sliderSize.height,
+            lineHeight: `${sliderSize.height}px`,
+          }}
+          className={classNames(classes.filter__columnscounter, {
+            [classes.filter__columnscounter_filled]: i <= columnsCounter,
+          })}
+        >
+          {i}
+        </div>,
+      );
+    }
+
+    return columns;
+  };
+
+  const sliderLength =
+    (100 * (columnsCounter - sliderSize.min)) /
+    (sliderSize.max - sliderSize.min);
+
   return (
     <div className={classNames(divClass, classes.filter)}>
       <div className={classNames(classes.filter__search, classes.search)}>
@@ -68,6 +99,15 @@ const Filter: FC<FilterProps> = ({
         >
           <div className={classes.filter__columnsheader}>Columns</div>
           <input
+            style={{
+              background: `linear-gradient(
+            to right,
+            #fdbc11 0%,
+            #fdbc11 ${sliderLength}%,
+            #f2f2f2 ${sliderLength}%,
+            #f2f2f2 100%
+          )`,
+            }}
             className={classes.filter__columnslider}
             type="range"
             value={columnsCounter}
@@ -75,20 +115,7 @@ const Filter: FC<FilterProps> = ({
             min={sliderSize.min}
             max={sliderSize.max}
           />
-          <div
-            style={{
-              left: `calc(100% - ${sliderSize.width}px - (${
-                sliderSize.max - columnsCounter
-              } * (100% - ${sliderSize.width}px)/${
-                sliderSize.max - sliderSize.min
-              })`,
-              width: sliderSize.height,
-              lineHeight: `${sliderSize.height}px`,
-            }}
-            className={classes.filter__columnscounter}
-          >
-            {columnsCounter}
-          </div>
+          {getColumnsCounters()}
         </div>
         <div className={classes.filter__info}>
           <div
