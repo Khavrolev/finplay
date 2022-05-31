@@ -28,8 +28,17 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
     }
   }, [login, password, store]);
 
+  const handleKeyPress = (event: any) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   return (
-    <div className={classNames(divClass, classes.loginform)}>
+    <div
+      className={classNames(divClass, classes.loginform)}
+      onKeyPress={handleKeyPress}
+    >
       <Logo divClass={classes.loginform__logo} />
       <div className={classes.loginform__form}>
         <ClassicInput
