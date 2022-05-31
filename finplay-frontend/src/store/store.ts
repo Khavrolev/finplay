@@ -130,6 +130,7 @@ export default class Store {
       this.setGames(games);
       this.setGroups(groups);
       this.setProviders(providers);
+      console.log(providers);
     } catch (error) {
       console.error(error);
     } finally {

@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import { observer } from "mobx-react-lite";
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useMemo, useState } from "react";
 import Context from "../../../context";
 import { SORTING_TYPE } from "../../../utils/constants/filter";
-import { isFiltredGame } from "../../../utils/filter";
+import { getFiltredGames, getGamesInGroups } from "../../../utils/filter";
 import { IDiv } from "../../../utils/interfaces/components";
 import { IGame } from "../../../utils/interfaces/gameData";
 import Filter from "./Filter/Filter";
@@ -20,13 +20,15 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
 
   const [columnsCounter, setColumnsCounter] = useState(2);
 
-  const getFiltredGames = () => {
-    return store.games.filter((game) =>
-      isFiltredGame(store.groups, game, store.filter),
-    );
-  };
-
-  const filtredGames = getFiltredGames();
+  const gamesInGroups = useMemo(
+    () => getGamesInGroups(store.games, store.groups),
+    [store.games, store.groups],
+  );
+  const filtredGames = getFiltredGames(
+    gamesInGroups,
+    store.groups,
+    store.filter,
+  );
 
   const sortGames = (prev: IGame, cur: IGame) => {
     const sortingFunc = SORTING_TYPE[store.filter.sorting].func;
@@ -44,6 +46,7 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
         divClass={classes.userpage__filter}
         countFiltredGames={filtredGames.length}
         columnsCounter={columnsCounter}
+        gamesInGroups={gamesInGroups}
         handleSliderChange={setColumnsCounter}
       />
       <div

@@ -8,6 +8,7 @@ import {
 } from "../../../../utils/constants/filter";
 import { SelectionGroups } from "../../../../utils/enums/filter";
 import { IDiv } from "../../../../utils/interfaces/components";
+import { IGame } from "../../../../utils/interfaces/gameData";
 import classes from "./Filter.module.css";
 import SelectionList from "./SelectionList/SelectionList";
 
@@ -16,6 +17,7 @@ const sliderSize = { min: 2, max: 4, width: 25, height: 25 };
 interface FilterProps extends IDiv {
   countFiltredGames: number;
   columnsCounter: number;
+  gamesInGroups: IGame[];
   handleSliderChange: (columns: number) => void;
 }
 
@@ -23,6 +25,7 @@ const Filter: FC<FilterProps> = ({
   countFiltredGames,
   columnsCounter,
   handleSliderChange,
+  gamesInGroups,
   divClass,
 }) => {
   const { store } = useContext(Context);
@@ -81,6 +84,7 @@ const Filter: FC<FilterProps> = ({
       >
         <SelectionList
           type={SelectionGroups.Providers}
+          gamesInGroups={gamesInGroups}
           divClass={classes.filter__selector}
         />
         <SelectionList

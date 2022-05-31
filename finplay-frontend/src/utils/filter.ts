@@ -1,6 +1,21 @@
 import { IFilter } from "./interfaces/filter";
 import { IGame, IGroup } from "./interfaces/gameData";
 
+export const getGamesInGroups = (games: IGame[], groups: IGroup[]) => {
+  const gamesIdsInGroups = [
+    ...new Set(
+      groups.reduce((acc, item) => [...acc, ...item.games], [] as number[]),
+    ),
+  ];
+
+  const gamesAsObject = games.reduce((acc, item) => {
+    acc[item.id] = item;
+    return acc;
+  }, {} as { [key: number]: IGame });
+
+  return gamesIdsInGroups.map((item) => gamesAsObject[item]);
+};
+
 export const isFiltredGame = (
   groups: IGroup[],
   game: IGame,
@@ -34,6 +49,14 @@ export const isFiltredGame = (
     );
 
   return groupsIncludes;
+};
+
+export const getFiltredGames = (
+  games: IGame[],
+  groups: IGroup[],
+  filter: IFilter,
+) => {
+  return games.filter((game) => isFiltredGame(groups, game, filter));
 };
 
 export const isSortingAZ = (prev: IGame, cur: IGame) => {

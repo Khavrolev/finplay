@@ -8,24 +8,38 @@ import {
 } from "../../../../../utils/constants/filter";
 import { SelectionGroups } from "../../../../../utils/enums/filter";
 import { IDiv } from "../../../../../utils/interfaces/components";
+import { IGame } from "../../../../../utils/interfaces/gameData";
 import classes from "./SelectionList.module.css";
 
 interface SelectionListProps extends IDiv {
   type: SelectionGroups;
+  gamesInGroups?: IGame[];
 }
 
-const SelectionList: FC<SelectionListProps> = ({ type, divClass }) => {
+const SelectionList: FC<SelectionListProps> = ({
+  type,
+  gamesInGroups,
+  divClass,
+}) => {
   const { store } = useContext(Context);
 
   const getItems = () => {
     switch (type) {
       case SelectionGroups.Providers:
+        const usedProviders = [
+          ...new Set(gamesInGroups?.map((item) => item.provider)),
+        ];
         return {
-          data: store.providers,
+          data: store.providers.filter((item) =>
+            usedProviders.includes(item.id),
+          ),
           filterType: store.filter.providers,
         };
       case SelectionGroups.GameGroups:
-        return { data: store.groups, filterType: store.filter.groups };
+        return {
+          data: store.groups.filter((item) => item.games.length > 0),
+          filterType: store.filter.groups,
+        };
       case SelectionGroups.Sorting:
         return {
           data: SORTING_TYPE,
