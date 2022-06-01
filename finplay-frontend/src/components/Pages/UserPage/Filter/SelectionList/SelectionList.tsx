@@ -8,6 +8,7 @@ import {
 } from "../../../../../utils/constants/filter";
 import { SelectionGroups } from "../../../../../utils/enums/filter";
 import { IDiv } from "../../../../../utils/interfaces/components";
+import { IKey } from "../../../../../utils/interfaces/filter";
 import { IGame } from "../../../../../utils/interfaces/gameData";
 import classes from "./SelectionList.module.css";
 
@@ -26,12 +27,18 @@ const SelectionList: FC<SelectionListProps> = ({
   const getItems = () => {
     switch (type) {
       case SelectionGroups.Providers:
-        const usedProviders = [
-          ...new Set(gamesInGroups?.map((item) => item.provider)),
-        ];
+        const usedProviders = gamesInGroups?.reduce((acc, item) => {
+          if (acc[item.provider]) {
+            acc[item.provider] += 1;
+          } else {
+            acc[item.provider] = 1;
+          }
+          return acc;
+        }, {} as IKey<number>);
+
         return {
-          data: store.providers.filter((item) =>
-            usedProviders.includes(item.id),
+          data: store.providers.filter(
+            (item) => usedProviders && usedProviders[item.id],
           ),
           filterType: store.filter.providers,
         };

@@ -1,4 +1,4 @@
-import { IFilter } from "./interfaces/filter";
+import { IFilter, IKey } from "./interfaces/filter";
 import { IGame, IGroup } from "./interfaces/gameData";
 
 export const getGamesInGroups = (games: IGame[], groups: IGroup[]) => {
@@ -11,7 +11,7 @@ export const getGamesInGroups = (games: IGame[], groups: IGroup[]) => {
   const gamesAsObject = games.reduce((acc, item) => {
     acc[item.id] = item;
     return acc;
-  }, {} as { [key: number]: IGame });
+  }, {} as IKey<IGame>);
 
   return gamesIdsInGroups.map((item) => gamesAsObject[item]);
 };
