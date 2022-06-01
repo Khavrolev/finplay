@@ -48,7 +48,7 @@ const Filter: FC<FilterProps> = ({
             } * (100% - ${sliderSize.width}px)/${
               sliderSize.max - sliderSize.min
             })`,
-            width: sliderSize.height,
+            width: sliderSize.width,
             lineHeight: `${sliderSize.height}px`,
           }}
           className={classNames(classes.filter__columnscounter, {
