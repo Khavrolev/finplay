@@ -71,6 +71,7 @@ const Filter: FC<FilterProps> = ({
     <div className={classNames(classname, classes.filter)}>
       <div className={classNames(classes.filter__search, classes.search)}>
         <input
+          value={store.filter.gameName}
           className={classes.search__input}
           placeholder={SELECTION_GROUPS[SelectionGroups.GameName].title}
           onChange={handleChangeSearch}
