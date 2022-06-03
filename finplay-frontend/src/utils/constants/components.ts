@@ -1,6 +1,6 @@
-import { IPopup } from "../interfaces/components";
+import { PopupProps } from "../interfaces/components";
 
-const POPUP_CLOSED: IPopup = {
+const POPUP_CLOSED: PopupProps = {
   type: undefined,
   modalOpened: false,
   id: -1,

@@ -4,7 +4,7 @@ import GameDataEndpoint from "../utils/constants/fetchData";
 import {
   CreateGroup,
   GameData,
-  IGroup,
+  GroupProps,
   DeleteGroup,
   DeletedGroupResponse,
 } from "../utils/interfaces/gameData";
@@ -14,15 +14,19 @@ export default class DataService {
     return $api.get<GameData>(GameDataEndpoint);
   }
 
-  static async createGroup(group: CreateGroup): Promise<AxiosResponse<IGroup>> {
-    return $api.post<IGroup, AxiosResponse<IGroup>, CreateGroup>(
+  static async createGroup(
+    group: CreateGroup,
+  ): Promise<AxiosResponse<GroupProps>> {
+    return $api.post<GroupProps, AxiosResponse<GroupProps>, CreateGroup>(
       GameDataEndpoint,
       group,
     );
   }
 
-  static async updateGroup(group: IGroup): Promise<AxiosResponse<IGroup>> {
-    return $api.put<IGroup, AxiosResponse<IGroup>, IGroup>(
+  static async updateGroup(
+    group: GroupProps,
+  ): Promise<AxiosResponse<GroupProps>> {
+    return $api.put<GroupProps, AxiosResponse<GroupProps>, GroupProps>(
       GameDataEndpoint,
       group,
     );

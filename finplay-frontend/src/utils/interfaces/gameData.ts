@@ -1,9 +1,4 @@
-export interface ILogin {
-  userName: string;
-  password: string;
-}
-
-export interface IGame {
+export interface GameProps {
   id: number;
   name: string;
   date: Date;
@@ -12,21 +7,21 @@ export interface IGame {
   coverLarge: string;
 }
 
-export interface IGroup {
+export interface GroupProps {
   id: number;
   name: string;
   games: number[];
 }
 
-export interface IGameProvider {
+export interface GameProviderProps {
   id: number;
   name: string;
   logo: string;
 }
 export interface GameData {
-  games: IGame[];
-  groups: IGroup[];
-  providers: IGameProvider[];
+  games: GameProps[];
+  groups: GroupProps[];
+  providers: GameProviderProps[];
 }
 
 export interface CreateGroup {
@@ -39,6 +34,6 @@ export interface DeleteGroup {
 }
 
 export interface DeletedGroupResponse {
-  groupDeleted: IGroup;
-  groupUpdated?: IGroup;
+  groupDeleted: GroupProps;
+  groupUpdated?: GroupProps;
 }

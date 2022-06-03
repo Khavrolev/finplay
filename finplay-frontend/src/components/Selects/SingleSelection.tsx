@@ -1,13 +1,13 @@
 import { FC } from "react";
 import Select from "react-select";
-import { IOption } from "../../utils/interfaces/components";
+import { OptionProps } from "../../utils/interfaces/components";
 import { singleSelectionStyles } from "./SelectionInfo";
 import classes from "./Select.module.css";
 
 interface SingleSelectionProps {
   selectedItem: number;
   handleSelectedItem: (group: number) => void;
-  options: IOption[];
+  options: OptionProps[];
   disabled: boolean;
   placeholder: string;
 }
@@ -20,7 +20,7 @@ const SingleSelection: FC<SingleSelectionProps> = ({
 }) => {
   return (
     <div className={classes.select}>
-      <Select<IOption>
+      <Select<OptionProps>
         styles={singleSelectionStyles}
         options={options}
         value={options?.find((item) => item.value === selectedItem)}

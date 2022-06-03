@@ -1,12 +1,12 @@
 import classNames from "classnames";
 import { FC, memo, useContext } from "react";
 import Context from "../../../../context";
-import { IGroup } from "../../../../utils/interfaces/gameData";
+import { GroupProps } from "../../../../utils/interfaces/gameData";
 import ControlItem from "./Control/ControlItem";
 import classes from "./Item.module.css";
 
 interface GroupItemProps {
-  item: IGroup;
+  item: GroupProps;
 }
 
 const GroupItem: FC<GroupItemProps> = memo(({ item }) => {

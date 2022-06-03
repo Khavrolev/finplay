@@ -1,14 +1,17 @@
 import classNames from "classnames";
 import { FC } from "react";
 import Select from "react-select/";
-import { HTMLElementProps, IOption } from "../../utils/interfaces/components";
+import {
+  HTMLElementProps,
+  OptionProps,
+} from "../../utils/interfaces/components";
 import { multiSelectionStyles } from "./SelectionInfo";
 import classes from "./Select.module.css";
 
 interface MultiSelectionProps extends HTMLElementProps {
   selectedItems: number[];
   handleSelectedItems: (games: number[]) => void;
-  options: IOption[];
+  options: OptionProps[];
   placeholder: string;
 }
 

@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import { FC, memo } from "react";
-import { IGameProvider } from "../../../../utils/interfaces/gameData";
+import { GameProviderProps } from "../../../../utils/interfaces/gameData";
 import classes from "./Item.module.css";
 
 interface ProviderItemProps {
-  item: IGameProvider;
+  item: GameProviderProps;
 }
 
 const ProviderItem: FC<ProviderItemProps> = memo(({ item }) => {

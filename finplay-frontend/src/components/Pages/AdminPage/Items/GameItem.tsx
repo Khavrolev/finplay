@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import { FC, memo } from "react";
-import { IGame } from "../../../../utils/interfaces/gameData";
+import { GameProps } from "../../../../utils/interfaces/gameData";
 import classes from "./Item.module.css";
 
 interface GameItemProps {
-  item: IGame;
+  item: GameProps;
 }
 
 const GameItem: FC<GameItemProps> = memo(({ item }) => {

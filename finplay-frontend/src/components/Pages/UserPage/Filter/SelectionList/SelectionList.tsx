@@ -8,13 +8,13 @@ import {
 } from "../../../../../utils/constants/filter";
 import { SelectionGroups } from "../../../../../utils/enums/filter";
 import { HTMLElementProps } from "../../../../../utils/interfaces/components";
-import { IKey } from "../../../../../utils/interfaces/filter";
-import { IGame } from "../../../../../utils/interfaces/gameData";
+import { KeyProps } from "../../../../../utils/interfaces/filter";
+import { GameProps } from "../../../../../utils/interfaces/gameData";
 import classes from "./SelectionList.module.css";
 
 interface SelectionListProps extends HTMLElementProps {
   type: SelectionGroups;
-  gamesInGroups?: IGame[];
+  gamesInGroups?: GameProps[];
 }
 
 const SelectionList: FC<SelectionListProps> = ({
@@ -34,7 +34,7 @@ const SelectionList: FC<SelectionListProps> = ({
             acc[item.provider] = 1;
           }
           return acc;
-        }, {} as IKey<number>);
+        }, {} as KeyProps<number>);
 
         return {
           data: store.providers.filter(

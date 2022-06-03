@@ -1,12 +1,12 @@
 import { SortingType } from "../enums/filter";
 
-export interface IKey<T> {
+export interface KeyProps<T> {
   [key: number]: T;
 }
 
-export interface IFilter {
+export interface FilterProps {
   gameName: string;
-  groups: IKey<boolean>;
-  providers: IKey<boolean>;
+  groups: KeyProps<boolean>;
+  providers: KeyProps<boolean>;
   sorting: SortingType;
 }

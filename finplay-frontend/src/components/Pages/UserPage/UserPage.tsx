@@ -5,7 +5,7 @@ import Context from "../../../context";
 import { SORTING_TYPE } from "../../../utils/constants/filter";
 import { getFiltredGames, getGamesInGroups } from "../../../utils/filter";
 import { HTMLElementProps } from "../../../utils/interfaces/components";
-import { IGame } from "../../../utils/interfaces/gameData";
+import { GameProps } from "../../../utils/interfaces/gameData";
 import Filter from "./Filter/Filter";
 import classes from "./UserPage.module.css";
 
@@ -30,7 +30,7 @@ const UserPage: FC<HTMLElementProps> = ({ classname }) => {
     store.filter,
   );
 
-  const sortGames = (prev: IGame, cur: IGame) => {
+  const sortGames = (prev: GameProps, cur: GameProps) => {
     const sortingFunc = SORTING_TYPE[store.filter.sorting].func;
 
     if (sortingFunc(prev, cur)) {

@@ -4,30 +4,30 @@ import AuthService from "../services/authService";
 import DataService from "../services/dataService";
 import POPUP_CLOSED from "../utils/constants/components";
 import { EMPTY_FILTER } from "../utils/constants/filter";
-import { IPopup } from "../utils/interfaces/components";
-import { IFilter } from "../utils/interfaces/filter";
+import { PopupProps } from "../utils/interfaces/components";
+import { FilterProps } from "../utils/interfaces/filter";
 import {
   CreateGroup,
   DeletedGroupResponse,
-  IGame,
-  IGameProvider,
-  IGroup,
+  GameProps,
+  GameProviderProps,
+  GroupProps,
 } from "../utils/interfaces/gameData";
-import { AuthResponse, IUser } from "../utils/interfaces/user";
+import { AuthResponse, UserProps } from "../utils/interfaces/user";
 import UserEndpoints from "../utils/enums/fetchData";
 
 export default class Store {
-  user: IUser | undefined = undefined;
+  user: UserProps | undefined = undefined;
 
   loading = false;
 
   initialized = false;
 
-  games: IGame[] = [];
+  games: GameProps[] = [];
 
-  groups: IGroup[] = [];
+  groups: GroupProps[] = [];
 
-  providers: IGameProvider[] = [];
+  providers: GameProviderProps[] = [];
 
   filter = EMPTY_FILTER;
 
@@ -37,7 +37,7 @@ export default class Store {
     makeAutoObservable(this);
   }
 
-  setUser(user: IUser | undefined) {
+  setUser(user: UserProps | undefined) {
     this.user = user;
   }
 
@@ -49,23 +49,23 @@ export default class Store {
     this.initialized = bool;
   }
 
-  setGames(data: IGame[]) {
+  setGames(data: GameProps[]) {
     this.games = data;
   }
 
-  setGroups(data: IGroup[]) {
+  setGroups(data: GroupProps[]) {
     this.groups = data;
   }
 
-  setProviders(data: IGameProvider[]) {
+  setProviders(data: GameProviderProps[]) {
     this.providers = data;
   }
 
-  setFilter(data: IFilter) {
+  setFilter(data: FilterProps) {
     this.filter = data;
   }
 
-  setPopup(data: IPopup) {
+  setPopup(data: PopupProps) {
     this.popup = data;
   }
 
@@ -137,8 +137,8 @@ export default class Store {
     }
   }
 
-  async createGroup(addingGroup: CreateGroup): Promise<IGroup | undefined> {
-    let group: IGroup | undefined;
+  async createGroup(addingGroup: CreateGroup): Promise<GroupProps | undefined> {
+    let group: GroupProps | undefined;
 
     this.setLoading(true);
     try {
@@ -155,8 +155,10 @@ export default class Store {
     return group;
   }
 
-  async updateGroup(updatingGroup: IGroup): Promise<IGroup | undefined> {
-    let group: IGroup | undefined;
+  async updateGroup(
+    updatingGroup: GroupProps,
+  ): Promise<GroupProps | undefined> {
+    let group: GroupProps | undefined;
 
     this.setLoading(true);
     try {

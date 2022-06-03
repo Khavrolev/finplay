@@ -1,8 +1,8 @@
 import { StylesConfig } from "react-select";
-import { IOption } from "../../utils/interfaces/components";
-import { IGame, IGroup } from "../../utils/interfaces/gameData";
+import { OptionProps } from "../../utils/interfaces/components";
+import { GameProps, GroupProps } from "../../utils/interfaces/gameData";
 
-export const multiSelectionStyles: StylesConfig<IOption, true> = {
+export const multiSelectionStyles: StylesConfig<OptionProps, true> = {
   valueContainer: (provided) => ({
     ...provided,
     maxHeight: "500px",
@@ -26,7 +26,7 @@ export const multiSelectionStyles: StylesConfig<IOption, true> = {
   }),
 };
 
-export const singleSelectionStyles: StylesConfig<IOption, false> = {
+export const singleSelectionStyles: StylesConfig<OptionProps, false> = {
   control: (provided, state) => ({
     ...provided,
     padding: state.hasValue ? "23px 6px 12px 6px" : "12px 6px",
@@ -35,7 +35,9 @@ export const singleSelectionStyles: StylesConfig<IOption, false> = {
   }),
 };
 
-export const getOptions = (items: IGame[] | IGroup[]): IOption[] => {
+export const getOptions = (
+  items: GameProps[] | GroupProps[],
+): OptionProps[] => {
   if (!items) {
     return [];
   }

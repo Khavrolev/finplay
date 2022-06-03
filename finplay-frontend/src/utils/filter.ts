@@ -1,7 +1,7 @@
-import { IFilter, IKey } from "./interfaces/filter";
-import { IGame, IGroup } from "./interfaces/gameData";
+import { FilterProps, KeyProps } from "./interfaces/filter";
+import { GameProps, GroupProps } from "./interfaces/gameData";
 
-export const getGamesInGroups = (games: IGame[], groups: IGroup[]) => {
+export const getGamesInGroups = (games: GameProps[], groups: GroupProps[]) => {
   const gamesIdsInGroups = [
     ...new Set(
       groups.reduce((acc, item) => [...acc, ...item.games], [] as number[]),
@@ -11,15 +11,15 @@ export const getGamesInGroups = (games: IGame[], groups: IGroup[]) => {
   const gamesAsObject = games.reduce((acc, item) => {
     acc[item.id] = item;
     return acc;
-  }, {} as IKey<IGame>);
+  }, {} as KeyProps<GameProps>);
 
   return gamesIdsInGroups.map((item) => gamesAsObject[item]);
 };
 
 export const isFiltredGame = (
-  groups: IGroup[],
-  game: IGame,
-  filter: IFilter,
+  groups: GroupProps[],
+  game: GameProps,
+  filter: FilterProps,
 ) => {
   const gameNameIncludes = game.name
     .toLowerCase()
@@ -52,21 +52,21 @@ export const isFiltredGame = (
 };
 
 export const getFiltredGames = (
-  games: IGame[],
-  groups: IGroup[],
-  filter: IFilter,
+  games: GameProps[],
+  groups: GroupProps[],
+  filter: FilterProps,
 ) => {
   return games.filter((game) => isFiltredGame(groups, game, filter));
 };
 
-export const isSortingAZ = (prev: IGame, cur: IGame) => {
+export const isSortingAZ = (prev: GameProps, cur: GameProps) => {
   return prev.name.toLowerCase() > cur.name.toLowerCase();
 };
 
-export const isSortingZA = (prev: IGame, cur: IGame) => {
+export const isSortingZA = (prev: GameProps, cur: GameProps) => {
   return prev.name.toLowerCase() < cur.name.toLowerCase();
 };
 
-export const isSortingNewest = (prev: IGame, cur: IGame) => {
+export const isSortingNewest = (prev: GameProps, cur: GameProps) => {
   return prev.date < cur.date;
 };

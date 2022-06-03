@@ -8,7 +8,7 @@ import {
 } from "../../../../utils/constants/filter";
 import { SelectionGroups } from "../../../../utils/enums/filter";
 import { HTMLElementProps } from "../../../../utils/interfaces/components";
-import { IGame } from "../../../../utils/interfaces/gameData";
+import { GameProps } from "../../../../utils/interfaces/gameData";
 import classes from "./Filter.module.css";
 import SelectionList from "./SelectionList/SelectionList";
 
@@ -17,7 +17,7 @@ const sliderSize = { min: 2, max: 4, width: 25, height: 25 };
 interface FilterProps extends HTMLElementProps {
   countFiltredGames: number;
   columnsCounter: number;
-  gamesInGroups: IGame[];
+  gamesInGroups: GameProps[];
   handleSliderChange: (columns: number) => void;
 }
 

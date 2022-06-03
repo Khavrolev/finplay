@@ -11,13 +11,13 @@ export interface LoaderButtonProps extends HTMLElementProps {
   disabled: boolean;
 }
 
-export interface IPopup {
+export interface PopupProps {
   type: ActionType | undefined;
   modalOpened: boolean;
   id: number;
 }
 
-export interface IOption {
+export interface OptionProps {
   value: number;
   label: string;
 }
