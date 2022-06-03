@@ -29,9 +29,9 @@ const App = () => {
     <div className={classes.wrapper}>
       <Popup />
       {!store.user && store.initialized && (
-        <LoginForm divClass={classes.wrapper__loginform} />
+        <LoginForm classname={classes.wrapper__loginform} />
       )}
-      {store.user && <MainPage divClass={classes.wrapper__mainpage} />}
+      {store.user && <MainPage classname={classes.wrapper__mainpage} />}
     </div>
   );
 };

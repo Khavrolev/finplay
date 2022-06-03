@@ -3,10 +3,10 @@ import { observer } from "mobx-react-lite";
 import { FC, useContext } from "react";
 import Context from "../../../../../context";
 import { ActionType } from "../../../../../utils/enums/components";
-import { IDiv } from "../../../../../utils/interfaces/components";
+import { HTMLElementProps } from "../../../../../utils/interfaces/components";
 import classes from "./Control.module.css";
 
-interface ControlButtonProps extends IDiv {
+interface ControlButtonProps extends HTMLElementProps {
   id: number;
   name: string;
   type: ActionType;

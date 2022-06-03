@@ -6,10 +6,10 @@ import Context from "../../context";
 import Logo from "../Logo/Logo";
 import ClassicInput from "../Inputs/ClassicInput";
 import LoaderButton from "../Buttons/LoaderButton";
-import { IDiv } from "../../utils/interfaces/components";
+import { HTMLElementProps } from "../../utils/interfaces/components";
 import { ActionType, InputType } from "../../utils/enums/components";
 
-const LoginForm: FC<IDiv> = ({ divClass }) => {
+const LoginForm: FC<HTMLElementProps> = ({ classname }) => {
   const { store } = useContext(Context);
 
   const [login, setLogin] = useState("");
@@ -36,10 +36,10 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
 
   return (
     <div
-      className={classNames(divClass, classes.loginform)}
+      className={classNames(classname, classes.loginform)}
       onKeyPress={handleKeyPress}
     >
-      <Logo divClass={classes.loginform__logo} />
+      <Logo classname={classes.loginform__logo} />
       <div className={classes.loginform__form}>
         <ClassicInput
           type={InputType.Text}
@@ -47,7 +47,7 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
           handleChangeValue={setLogin}
           placeholder={"Login"}
           error={error}
-          divClass={classes.loginform__input}
+          classname={classes.loginform__input}
         />
         <ClassicInput
           type={InputType.Password}
@@ -55,14 +55,14 @@ const LoginForm: FC<IDiv> = ({ divClass }) => {
           handleChangeValue={setPassword}
           placeholder={"Password"}
           error={error}
-          divClass={classes.loginform__input}
+          classname={classes.loginform__input}
         />
         <LoaderButton
           name="Login"
           type={ActionType.Login}
           handleClick={handleSubmit}
           disabled={false}
-          divClass={classes.loginform__submit}
+          classname={classes.loginform__submit}
         />
       </div>
     </div>

@@ -2,16 +2,16 @@ import classNames from "classnames";
 import { observer } from "mobx-react-lite";
 import { FC, useContext } from "react";
 import Context from "../../../context";
-import { IDiv } from "../../../utils/interfaces/components";
+import { HTMLElementProps } from "../../../utils/interfaces/components";
 import Logo from "../../Logo/Logo";
 import classes from "./Header.module.css";
 
-const Header: FC<IDiv> = ({ divClass }) => {
+const Header: FC<HTMLElementProps> = ({ classname }) => {
   const { store } = useContext(Context);
 
   return (
-    <div className={classNames(divClass, classes.header)}>
-      <Logo divClass={classes.header__logo} />
+    <div className={classNames(classname, classes.header)}>
+      <Logo classname={classes.header__logo} />
       <button
         className={classNames(classes.header__logout, classes.logout)}
         onClick={() => store.logout()}

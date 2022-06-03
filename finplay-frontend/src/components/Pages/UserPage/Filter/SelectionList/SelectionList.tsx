@@ -7,12 +7,12 @@ import {
   SORTING_TYPE,
 } from "../../../../../utils/constants/filter";
 import { SelectionGroups } from "../../../../../utils/enums/filter";
-import { IDiv } from "../../../../../utils/interfaces/components";
+import { HTMLElementProps } from "../../../../../utils/interfaces/components";
 import { IKey } from "../../../../../utils/interfaces/filter";
 import { IGame } from "../../../../../utils/interfaces/gameData";
 import classes from "./SelectionList.module.css";
 
-interface SelectionListProps extends IDiv {
+interface SelectionListProps extends HTMLElementProps {
   type: SelectionGroups;
   gamesInGroups?: IGame[];
 }
@@ -20,7 +20,7 @@ interface SelectionListProps extends IDiv {
 const SelectionList: FC<SelectionListProps> = ({
   type,
   gamesInGroups,
-  divClass,
+  classname,
 }) => {
   const { store } = useContext(Context);
 
@@ -87,7 +87,7 @@ const SelectionList: FC<SelectionListProps> = ({
   };
 
   return (
-    <div className={classNames(divClass, classes.selector)}>
+    <div className={classNames(classname, classes.selector)}>
       <div className={classes.selector__title}>
         {SELECTION_GROUPS[type].title}
       </div>

@@ -66,21 +66,21 @@ const EditGroup: FC<EditGroupProps> = ({ groupId }) => {
           handleChangeValue={setName}
           placeholder={"Group name"}
           error={error}
-          divClass={classes.popup__input}
+          classname={classes.popup__input}
         />
         <MultiSelection
           selectedItems={selectedGames}
           handleSelectedItems={setSelectedGames}
           options={getOptions(store.games)}
           placeholder={"Games"}
-          divClass={classes.popup__select}
+          classname={classes.popup__select}
         />
         <LoaderButton
           name="Save"
           type={ActionType.Edit}
           handleClick={handleSubmit}
           disabled={name === ""}
-          divClass={classes.popup__submit}
+          classname={classes.popup__submit}
         />
       </div>
     </div>

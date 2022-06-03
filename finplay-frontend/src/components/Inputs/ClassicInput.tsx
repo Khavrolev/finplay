@@ -1,10 +1,10 @@
 import classNames from "classnames";
 import { FC, MouseEvent, useState } from "react";
 import { InputType } from "../../utils/enums/components";
-import { IDiv } from "../../utils/interfaces/components";
+import { HTMLElementProps } from "../../utils/interfaces/components";
 import classes from "./ClassicInput.module.css";
 
-interface CustomInputProps extends IDiv {
+interface CustomInputProps extends HTMLElementProps {
   type: InputType;
   value: string;
   handleChangeValue: (value: string) => void;
@@ -18,7 +18,7 @@ const CustomInput: FC<CustomInputProps> = ({
   handleChangeValue,
   placeholder,
   error,
-  divClass,
+  classname,
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -29,7 +29,7 @@ const CustomInput: FC<CustomInputProps> = ({
   };
 
   return (
-    <div className={classNames(divClass, classes.input)}>
+    <div className={classNames(classname, classes.input)}>
       <input
         className={classNames(classes.input__item, {
           [classes.input__item_error]: error,

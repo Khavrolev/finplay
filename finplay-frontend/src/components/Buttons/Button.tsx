@@ -12,13 +12,13 @@ const Button: FC<ButtonProps> = ({
   type,
   handleClick,
   disabled,
-  divClass,
+  classname,
   loading,
 }) => {
   return (
     <button
       className={classNames(
-        divClass,
+        classname,
         classes.button,
         classes[`button_${type}`],
       )}

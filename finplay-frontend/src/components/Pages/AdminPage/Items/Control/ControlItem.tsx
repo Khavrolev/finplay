@@ -2,16 +2,16 @@ import classNames from "classnames";
 import { FC } from "react";
 import ControlButton from "./ControlButton";
 import classes from "./Control.module.css";
-import { IDiv } from "../../../../../utils/interfaces/components";
+import { HTMLElementProps } from "../../../../../utils/interfaces/components";
 import { ActionType } from "../../../../../utils/enums/components";
 
-interface ControlItemProps extends IDiv {
+interface ControlItemProps extends HTMLElementProps {
   id: number;
 }
 
-const ControlItem: FC<ControlItemProps> = ({ id, divClass }) => {
+const ControlItem: FC<ControlItemProps> = ({ id, classname }) => {
   return (
-    <div className={classNames(divClass, classes.control)}>
+    <div className={classNames(classname, classes.control)}>
       <ControlButton id={id} name="Edit" type={ActionType.Edit} />
       <ControlButton id={id} name="Delete" type={ActionType.Delete} />
     </div>

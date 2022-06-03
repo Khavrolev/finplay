@@ -7,14 +7,14 @@ import {
   SELECTION_GROUPS,
 } from "../../../../utils/constants/filter";
 import { SelectionGroups } from "../../../../utils/enums/filter";
-import { IDiv } from "../../../../utils/interfaces/components";
+import { HTMLElementProps } from "../../../../utils/interfaces/components";
 import { IGame } from "../../../../utils/interfaces/gameData";
 import classes from "./Filter.module.css";
 import SelectionList from "./SelectionList/SelectionList";
 
 const sliderSize = { min: 2, max: 4, width: 25, height: 25 };
 
-interface FilterProps extends IDiv {
+interface FilterProps extends HTMLElementProps {
   countFiltredGames: number;
   columnsCounter: number;
   gamesInGroups: IGame[];
@@ -26,7 +26,7 @@ const Filter: FC<FilterProps> = ({
   columnsCounter,
   handleSliderChange,
   gamesInGroups,
-  divClass,
+  classname,
 }) => {
   const { store } = useContext(Context);
 
@@ -68,7 +68,7 @@ const Filter: FC<FilterProps> = ({
     (sliderSize.max - sliderSize.min);
 
   return (
-    <div className={classNames(divClass, classes.filter)}>
+    <div className={classNames(classname, classes.filter)}>
       <div className={classNames(classes.filter__search, classes.search)}>
         <input
           className={classes.search__input}
@@ -85,15 +85,15 @@ const Filter: FC<FilterProps> = ({
         <SelectionList
           type={SelectionGroups.Providers}
           gamesInGroups={gamesInGroups}
-          divClass={classes.filter__selector}
+          classname={classes.filter__selector}
         />
         <SelectionList
           type={SelectionGroups.GameGroups}
-          divClass={classes.filter__selector}
+          classname={classes.filter__selector}
         />
         <SelectionList
           type={SelectionGroups.Sorting}
-          divClass={classes.filter__selector}
+          classname={classes.filter__selector}
         />
         <div
           className={classNames(

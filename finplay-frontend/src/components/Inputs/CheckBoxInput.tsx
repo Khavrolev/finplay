@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import { FC } from "react";
-import { IDiv } from "../../utils/interfaces/components";
+import { HTMLElementProps } from "../../utils/interfaces/components";
 import classes from "./CheckBoxInput.module.css";
 
-interface CheckBoxInputProps extends IDiv {
+interface CheckBoxInputProps extends HTMLElementProps {
   value: boolean;
   handleChangeValue: (value: boolean) => void;
   disabled: boolean;
@@ -15,10 +15,10 @@ const CheckBoxInput: FC<CheckBoxInputProps> = ({
   handleChangeValue,
   disabled,
   placeholder,
-  divClass,
+  classname,
 }) => {
   return (
-    <div className={classNames(divClass, classes.input)}>
+    <div className={classNames(classname, classes.input)}>
       <input
         className={classes.input__item}
         type="checkbox"

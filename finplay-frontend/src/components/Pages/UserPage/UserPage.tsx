@@ -4,7 +4,7 @@ import { FC, useContext, useMemo, useState } from "react";
 import Context from "../../../context";
 import { SORTING_TYPE } from "../../../utils/constants/filter";
 import { getFiltredGames, getGamesInGroups } from "../../../utils/filter";
-import { IDiv } from "../../../utils/interfaces/components";
+import { HTMLElementProps } from "../../../utils/interfaces/components";
 import { IGame } from "../../../utils/interfaces/gameData";
 import Filter from "./Filter/Filter";
 import classes from "./UserPage.module.css";
@@ -15,7 +15,7 @@ declare module "csstype" {
   }
 }
 
-const UserPage: FC<IDiv> = ({ divClass }) => {
+const UserPage: FC<HTMLElementProps> = ({ classname }) => {
   const { store } = useContext(Context);
 
   const [columnsCounter, setColumnsCounter] = useState(2);
@@ -41,9 +41,9 @@ const UserPage: FC<IDiv> = ({ divClass }) => {
   };
 
   return (
-    <div className={classNames(divClass, classes.userpage)}>
+    <div className={classNames(classname, classes.userpage)}>
       <Filter
-        divClass={classes.userpage__filter}
+        classname={classes.userpage__filter}
         countFiltredGames={filtredGames.length}
         columnsCounter={columnsCounter}
         gamesInGroups={gamesInGroups}

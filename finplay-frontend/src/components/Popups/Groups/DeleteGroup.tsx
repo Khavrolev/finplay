@@ -66,7 +66,7 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
           handleChangeValue={setCompletelyDelete}
           disabled={selectedGroup !== -1}
           placeholder="Delete completely"
-          divClass={classes.popup__checkbox}
+          classname={classes.popup__checkbox}
         />
         <div className={classes.popup__submit}>
           <LoaderButton
@@ -74,14 +74,14 @@ const DeleteGroup: FC<DeleteGroupProps> = ({ groupId }) => {
             type={ActionType.Delete}
             handleClick={handleSubmit}
             disabled={selectedGroup === -1 && !completelyDelete}
-            divClass={classes.popup__button}
+            classname={classes.popup__button}
           />
           <LoaderButton
             name="No"
             type={ActionType.Cancel}
             handleClick={handleCancel}
             disabled={false}
-            divClass={classes.popup__button}
+            classname={classes.popup__button}
           />
         </div>
       </div>

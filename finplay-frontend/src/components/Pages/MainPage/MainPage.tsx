@@ -2,13 +2,13 @@ import classNames from "classnames";
 import { observer } from "mobx-react-lite";
 import { FC, useContext, useEffect } from "react";
 import Context from "../../../context";
-import { IDiv } from "../../../utils/interfaces/components";
+import { HTMLElementProps } from "../../../utils/interfaces/components";
 import AdminPage from "../AdminPage/AdminPage";
 import Header from "../Header/Header";
 import UserPage from "../UserPage/UserPage";
 import classes from "./MainPage.module.css";
 
-const MainPage: FC<IDiv> = ({ divClass }) => {
+const MainPage: FC<HTMLElementProps> = ({ classname }) => {
   const { store } = useContext(Context);
 
   useEffect(() => {
@@ -20,13 +20,13 @@ const MainPage: FC<IDiv> = ({ divClass }) => {
   }, [store]);
 
   return (
-    <div className={classNames(divClass, classes.mainpage)}>
-      <Header divClass={classes.mainpage__header} />
+    <div className={classNames(classname, classes.mainpage)}>
+      <Header classname={classes.mainpage__header} />
       {store.user?.adminRole && (
-        <AdminPage divClass={classes.mainpage__adminpage} />
+        <AdminPage classname={classes.mainpage__adminpage} />
       )}
       {store.user && !store.user.adminRole && (
-        <UserPage divClass={classes.mainpage__userpage} />
+        <UserPage classname={classes.mainpage__userpage} />
       )}
     </div>
   );

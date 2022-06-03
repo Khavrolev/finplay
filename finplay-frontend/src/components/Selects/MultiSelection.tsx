@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import { FC } from "react";
 import Select from "react-select/";
-import { IDiv, IOption } from "../../utils/interfaces/components";
+import { HTMLElementProps, IOption } from "../../utils/interfaces/components";
 import { multiSelectionStyles } from "./SelectionInfo";
 import classes from "./Select.module.css";
 
-interface MultiSelectionProps extends IDiv {
+interface MultiSelectionProps extends HTMLElementProps {
   selectedItems: number[];
   handleSelectedItems: (games: number[]) => void;
   options: IOption[];
@@ -17,10 +17,10 @@ const MultiSelection: FC<MultiSelectionProps> = ({
   handleSelectedItems,
   options,
   placeholder,
-  divClass,
+  classname,
 }) => {
   return (
-    <div className={classNames(divClass, classes.select)}>
+    <div className={classNames(classname, classes.select)}>
       <Select
         styles={multiSelectionStyles}
         options={options}

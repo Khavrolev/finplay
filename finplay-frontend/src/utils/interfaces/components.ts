@@ -1,10 +1,10 @@
 import { ActionType } from "../enums/components";
 
-export interface IDiv {
-  divClass?: string;
+export interface HTMLElementProps {
+  classname?: string;
 }
 
-export interface LoaderButtonProps extends IDiv {
+export interface LoaderButtonProps extends HTMLElementProps {
   name: string;
   type: ActionType;
   handleClick: () => void;

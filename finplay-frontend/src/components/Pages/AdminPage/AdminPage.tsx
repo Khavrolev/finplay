@@ -3,13 +3,13 @@ import { observer } from "mobx-react-lite";
 import { FC, useContext } from "react";
 import Context from "../../../context";
 import { ActionType } from "../../../utils/enums/components";
-import { IDiv } from "../../../utils/interfaces/components";
+import { HTMLElementProps } from "../../../utils/interfaces/components";
 import classes from "./AdminPage.module.css";
 import GameItem from "./Items/GameItem";
 import GroupItem from "./Items/GroupItem";
 import ProviderItem from "./Items/ProviderItem";
 
-const AdminPage: FC<IDiv> = ({ divClass }) => {
+const AdminPage: FC<HTMLElementProps> = ({ classname }) => {
   const { store } = useContext(Context);
 
   const handleAddGroup = () => {
@@ -17,7 +17,7 @@ const AdminPage: FC<IDiv> = ({ divClass }) => {
   };
 
   return (
-    <div className={classNames(divClass, classes.adminpage)}>
+    <div className={classNames(classname, classes.adminpage)}>
       <div className={classes.adminpage__block}>
         <div className={classes.adminpage__title}>
           <div className={classes.adminpage__text}>Groups</div>

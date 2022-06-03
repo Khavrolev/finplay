@@ -48,7 +48,7 @@ const GroupItem: FC<GroupItemProps> = memo(({ item }) => {
         {getCovers()}
       </button>
       <div className={classes.content__title}>{item.name}</div>
-      <ControlItem id={item.id} divClass={classes.content__control} />
+      <ControlItem id={item.id} classname={classes.content__control} />
     </div>
   );
 });
